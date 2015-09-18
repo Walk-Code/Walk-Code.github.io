@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://walk-code.github.io/all-categories/index.html</loc>
+    <lastmod>2015-09-18T04:39:47.450Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://walk-code.github.io/2015/09/17/hello-world/</loc>
     <lastmod>2015-09-17T03:28:46.623Z</lastmod>
   </url>
