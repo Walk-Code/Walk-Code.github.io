@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不努力未来永远只是一个梦]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2016-01-18T15:16:22.626Z</updated>
+  <updated>2016-01-18T15:22:11.454Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://walk-code.github.io/2016/01/18/git-%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E6%AD%A5%E9%AA%A4/"/>
     <id>http://walk-code.github.io/2016/01/18/git-项目上传步骤/</id>
     <published>2016-01-18T14:19:51.000Z</published>
-    <updated>2016-01-18T15:16:22.626Z</updated>
+    <updated>2016-01-18T15:22:11.454Z</updated>
     <content type="html"><![CDATA[<p>先初始化Git:<br><code>Git Bash</code></p>
 <blockquote>
 <ul>
