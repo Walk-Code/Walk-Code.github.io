@@ -28,7 +28,7 @@ git config --global user.name &amp;quot;Your Real Name&amp;quot;    //github的�
 git config --global user.email you@email.address //github的账号
 
 上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘y">
-<meta property="og:updated_time" content="2016-01-18T14:40:06.903Z">
+<meta property="og:updated_time" content="2016-01-18T15:05:45.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 项目上传步骤">
 <meta name="twitter:description" content="先初始化Git:Git Bash
@@ -198,17 +198,17 @@ git config --global user.email you@email.address //github的账号
 <li><code>git add</code> 选择你要添加到仓库的文件.</li>
 <li><code>git commit -m &#39;first commit&#39;</code> 添加到仓库。-m 后面跟参数说明，将代码提交到GitHub会在代码文件信息上显示这个说明。</li>
 <li><code>git remote add origin git@github.com:XXX/XXX.git</code></li>
-<li><p><code>git push -u origin master</code>完成上传。<br>一些可能遇到的问题解决方式：</p>
-</li>
-<li><p><code>git remote add origin</code></p>
-</li>
-<li><code>git@github.com:djqiang（github帐号名）/gitdemo（项目名）.git</code></li>
+<li><code>git push -u origin master</code>完成上传。</li>
 </ul>
-<p>提示出错信息：fatal: remote origin already exists.<br>解决办法如下： </p>
+<p>一些可能遇到的问题解决方式：</p>
+<ul>
+<li><code>git remote add origin</code></li>
+<li><code>git@github.com:djqiang（github帐号名）/gitdemo（项目名）.git</code><br>提示出错信息：fatal: remote origin already exists.<br>解决办法如下： </li>
+</ul>
 <ol>
 <li>先输入<code>git remote rm origin</code> </li>
 <li>再输入<code>git remote add origin git@github.com:djqiang/gitdemo.git</code> 就不会报错了！ </li>
-<li>如果输入<code>git remote rm origin</code><br>还是报错的话，error: Could not remove config section ‘remote.origin’.<br>我们需要修改gitconfig文件的内容</li>
+<li>如果输入<code>git remote rm origin</code><br>还是报错的话，error: Could not remove config section ‘remote.origin’.<br>我们需要修改gitconfig文件的内容.</li>
 <li>找到你的github的安装路径，我的是C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc</li>
 <li>找到一个名为gitconfig的文件，打开它把里面的[remote “origin”]那一行删掉就好了！<br>如果输入<code>ssh -T git@github.com</code><br>出现错误提示：Permission denied (publickey). 因为新生成的key不能加入ssh就会导致连接不上github。<br>解决办法如下： </li>
 <li>先输入<code>ssh-agent</code>，再输入<code>ssh-add ~/.ssh/id_key</code>，这样就可以了。</li>
