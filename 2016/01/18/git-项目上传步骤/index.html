@@ -14,23 +14,35 @@
     
     <meta name="description" content="先初始化Git:Git Bash
 
+
 git config --global user.name &amp;quot;Your Real Name&amp;quot;    //github的名字
-git config --global user.email you@email.address //github的账号上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘you">
+git config --global user.email you@email.address //github的账号
+
+
+上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="git 项目上传步骤">
 <meta property="og:url" content="http://walk-code.github.io/2016/01/18/git-项目上传步骤/index.html">
 <meta property="og:site_name" content="Goalkeeper">
 <meta property="og:description" content="先初始化Git:Git Bash
 
+
 git config --global user.name &amp;quot;Your Real Name&amp;quot;    //github的名字
-git config --global user.email you@email.address //github的账号上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘you">
-<meta property="og:updated_time" content="2016-01-18T15:10:08.986Z">
+git config --global user.email you@email.address //github的账号
+
+
+上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C">
+<meta property="og:updated_time" content="2016-01-18T15:16:22.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 项目上传步骤">
 <meta name="twitter:description" content="先初始化Git:Git Bash
 
+
 git config --global user.name &amp;quot;Your Real Name&amp;quot;    //github的名字
-git config --global user.email you@email.address //github的账号上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘you">
+git config --global user.email you@email.address //github的账号
+
+
+上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C">
     
     
     
@@ -182,19 +194,36 @@ git config --global user.email you@email.address //github的账号上传文件�
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
         
             <p>先初始化Git:<br><code>Git Bash</code></p>
+<blockquote>
 <ul>
 <li><code>git config --global user.name &quot;Your Real Name&quot;</code>    //github的名字</li>
-<li><code>git config --global user.email you@email.address</code> //github的账号<br>上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘your@email.address’ -t rsa 会出现让你输入SSH密钥的存放位置，这个可以不用理会，直接回车使用默认路径。接着就是你想要的密码，SSHkey就生成了。找到SSH密钥存放的位置，打开id_rsa.pub复制里面的内容（notepad++或者记事本打开）原封不动的复制，接着直接在打开GitHub，添加add SSH key。</li>
+<li><code>git config --global user.email you@email.address</code> //github的账号</li>
 </ul>
+</blockquote>
+<p>上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘your@email.address’ -t rsa 会出现让你输入SSH密钥的存放位置，这个可以不用理会，直接回车使用默认路径。接着就是你想要的密码，SSHkey就生成了。找到SSH密钥存放的位置，打开id_rsa.pub复制里面的内容（notepad++或者记事本打开）原封不动的复制，接着直接在打开GitHub，添加add SSH key。</p>
 <p>做完这些可以说已经基本配置完成了，现在就可以上传自己的代码了，在你想上传的文件的下先<code>git init here</code>也可以在GitBash中进入这个文件，输入<code>git init</code></p>
+<blockquote>
 <ul>
 <li><code>git add</code> 选择你要添加到仓库的文件.</li>
-<li><code>git commit -m &#39;first commit&#39;</code> 添加到仓库。-m 后面跟参数说明，将代码提交到GitHub会在代码文件信息上显示这个说明。</li>
-<li><code>git remote add origin git@github.com:XXX/XXX.git</code></li>
-<li><code>git push -u origin master</code>完成上传。<br>一些可能遇到的问题解决方式：</li>
-<li><code>git remote add origin</code></li>
-<li><code>git@github.com:djqiang（github帐号名）/gitdemo（项目名）.git</code><br>提示出错信息：fatal: remote origin already exists.<br>解决办法如下： </li>
+<li><code>git commit -m &#39;first commit&#39;</code> 添加到仓库。</li>
 </ul>
+</blockquote>
+<p><strong>-m</strong> 后面跟参数说明，将代码提交到GitHub会在代码文件信息上显示这个说明。</p>
+<blockquote>
+<ul>
+<li><code>git remote add origin git@github.com:XXX/XXX.git</code></li>
+<li><code>git push -u origin master</code>完成上传。</li>
+</ul>
+</blockquote>
+<p>一些可能遇到的问题解决方式：</p>
+<blockquote>
+<ul>
+<li><code>git remote add origin</code></li>
+<li><code>git@github.com:djqiang（github帐号名）/gitdemo（项目名）.git</code></li>
+</ul>
+</blockquote>
+<p>提示出错信息：fatal: remote origin already exists.<br>解决办法如下：</p>
+<blockquote>
 <ol>
 <li>先输入<code>git remote rm origin</code> </li>
 <li>再输入<code>git remote add origin git@github.com:djqiang/gitdemo.git</code> 就不会报错了！ </li>
@@ -202,19 +231,24 @@ git config --global user.email you@email.address //github的账号上传文件�
 <li>找到你的github的安装路径，我的是C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc</li>
 <li>找到一个名为gitconfig的文件，打开它把里面的[remote “origin”]那一行删掉就好了！</li>
 </ol>
-<p>如果输入<code>ssh -T git@github.com</code><br>出现错误提示：Permission denied (publickey). 因为新生成的key不能加入ssh就会导致连接不上github。<br>解决办法如下： </p>
+</blockquote>
+<p>如果输入<code>ssh -T git@github.com</code><br>出现错误提示：Permission denied (publickey). 因为新生成的key不能加入ssh就会导致连接不上github。<br>解决办法如下：</p>
+<blockquote>
 <ol>
 <li>先输入<code>ssh-agent</code>，再输入<code>ssh-add ~/.ssh/id_key</code>，这样就可以了。</li>
 <li>如果还是不行的话，输入<code>ssh-add ~/.ssh/id_key</code> 命令后出现报错Could not open a connection to your authentication agent.解决方法是key用Git<br>Gui的ssh工具生成，这样生成的时候key就直接保存在ssh中了，不需要再ssh-add命令加入了，其它的user，token等配置都用命令行来做。</li>
 <li>最好检查一下在你复制id_rsa.pub文件的内容时有没有产生多余的空格或空行，有些编辑器会帮你添加这些的。</li>
 </ol>
+</blockquote>
 <p>如果输入<code>git push origin master</code><br>提示出错信息：error:failed to push som refs to …….<br>解决办法如下：</p>
+<blockquote>
 <ol>
 <li>先输入<code>git pull origin master</code> //先把远程服务器github上面的文件拉下来 </li>
 <li>再输入<code>git push origin master</code></li>
 <li>如果出现报错 fatal: Couldn’t find remote ref<br>master或者fatal: ‘origin’ does not appear to be a git repository以及fatal:<br>Could not read from remote repository. </li>
 <li>则需要重新输入<code>git remote add origingit@github.com:djqiang/gitdemo.git</code> </li>
 </ol>
+</blockquote>
 <p>其他问题解决方式可以参考：<br><a href="http://stackoverflow.com/questions/16128018/git-commit-and-automatically-add-all-untracked-files" target="_blank" rel="external">http://stackoverflow.com/questions/16128018/git-commit-and-automatically-add-all-untracked-files</a><br><a href="http://stackoverflow.com/questions/4181861/src-refspec-master-does-not-match-any-when-pushing-commits-in-git" target="_blank" rel="external">http://stackoverflow.com/questions/4181861/src-refspec-master-does-not-match-any-when-pushing-commits-in-git</a></p>
 <p>另外提供一个Git简易使用说明：<a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="external">http://www.bootcss.com/p/git-guide/</a></p>
 
