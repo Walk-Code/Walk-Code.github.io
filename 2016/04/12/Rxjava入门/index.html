@@ -61,24 +61,21 @@
 
 <meta name="description" content="传送门 RxJava中文翻译亦或RxJava官方文档
 1.为什么要用RxJava这里引用一段Airbnb Developer的一段话:
-我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。
-RxJava 是解决这类问题的好方法，因为他能够使得线程间的切">
+我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rxjava入门">
 <meta property="og:url" content="http://walk-code.github.io/2016/04/12/Rxjava入门/index.html">
 <meta property="og:site_name" content="Goalkeeper">
 <meta property="og:description" content="传送门 RxJava中文翻译亦或RxJava官方文档
 1.为什么要用RxJava这里引用一段Airbnb Developer的一段话:
-我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。
-RxJava 是解决这类问题的好方法，因为他能够使得线程间的切">
+我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgw1f2wongssb4j30u20ccabm.jpg">
-<meta property="og:updated_time" content="2016-04-14T16:33:46.997Z">
+<meta property="og:updated_time" content="2016-05-04T13:24:03.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rxjava入门">
 <meta name="twitter:description" content="传送门 RxJava中文翻译亦或RxJava官方文档
 1.为什么要用RxJava这里引用一段Airbnb Developer的一段话:
-我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。
-RxJava 是解决这类问题的好方法，因为他能够使得线程间的切">
+我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。">
 
 
 
@@ -324,8 +321,7 @@ RxJava 是解决这类问题的好方法，因为他能够使得线程间的切"
       
         <p><strong>传送门</strong> <a href="https://mcxiaoke.gitbooks.io/rxdocs/content/" target="_blank" rel="external">RxJava中文翻译</a>亦或<a href="http://reactivex.io/" target="_blank" rel="external">RxJava官方文档</a></p>
 <h3 id="1-为什么要用RxJava">1.为什么要用RxJava</h3><p>这里引用一段<a href="https://realm.io/cn/news/kau-felipe-lima-adopting-rxjava-airbnb-android/" target="_blank" rel="external">Airbnb Developer</a>的一段话:</p>
-<p>我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。</p>
-<p>RxJava 是解决这类问题的好方法，因为他能够使得线程间的切换比较容易。这已经集成在框架里面了。异步操作非常笨重而且容易出错，RxJava 使得你不用再这样做了，这也是你能把不同的线程组合在一起的原因。</p>
+<p>我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。<br><a id="more"></a><br>RxJava 是解决这类问题的好方法，因为他能够使得线程间的切换比较容易。这已经集成在框架里面了。异步操作非常笨重而且容易出错，RxJava 使得你不用再这样做了，这也是你能把不同的线程组合在一起的原因。</p>
 <p>我们需要 RxJava 的真正原因其实是 我们的软件很烂。为什么我们有如此多的 bug？为什么我们需要 crash 报告工具来跟踪我们成千上万的 crash，或者多少用户已经对我们生气了？这里可能有些什么事情不对劲。</p>
 <p>我们需要改变；我觉得 imperative 编程是我们不应该采用的方法。当然，面向对象编程已经流行很多年了。它已经深入到了现代程序员的骨髓里了。每个人都盲目的使用它，但是它不是我们开发软件的必需品。</p>
 <p>Functional 编程是 RxJava 里面的概念，而且我觉得用这种方法，代码更加健壮，而且永远不需要维护状态了。代码更加可靠而且你知道它一定工作。</p>
@@ -335,7 +331,9 @@ RxJava 是解决这类问题的好方法，因为他能够使得线程间的切"
 <p><img src="http://ww1.sinaimg.cn/large/005yEbTbgw1f2wongssb4j30u20ccabm.jpg" alt=""></p>
 <p>废话不多说先来个Hello World.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//基本Observable</span><br><span class="line">Observable myObservable = Observable.create(new Observable.OnSubscribe() &#123;</span><br><span class="line"></span><br><span class="line">		public void call(Object sub) &#123;</span><br><span class="line">			((Subscriber)sub).onNext(<span class="string">"Hello World"</span>);</span><br><span class="line">			((Subscriber)sub).onCompleted();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;); </span><br><span class="line"></span><br><span class="line">//被消费</span><br><span class="line">Subscriber subscriber = new Subscriber() &#123;</span><br><span class="line"></span><br><span class="line">		public void onCompleted() &#123;</span><br><span class="line">						</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public void onError(Throwable arg0) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public void onNext(Object arg0) &#123;</span><br><span class="line">			System.out.println((String)arg0);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;;</span><br><span class="line">//上面代码所做的工作就是打印由Observable发送的字符串。现在我们有了myObservable和mySubscriber，就可以通过subscribe()函数把两者关联起来：	</span><br><span class="line">myObservable.subscribe(mySubscriber);</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>结合Jvav8的新特效代码会变得更加的简洁</p>
+</blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable observable = (Observable) Observable.just("Hello World").subscribe(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
       
     </div>
