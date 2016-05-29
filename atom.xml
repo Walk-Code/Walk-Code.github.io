@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不努力未来永远只是一个梦]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2016-05-04T13:24:03.621Z</updated>
+  <updated>2016-05-29T06:11:57.073Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -13,6 +13,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[浅用GreenDao]]></title>
+    <link href="http://walk-code.github.io/2016/05/29/%E6%B5%85%E7%94%A8GreenDao/"/>
+    <id>http://walk-code.github.io/2016/05/29/浅用GreenDao/</id>
+    <published>2016-05-29T04:41:43.000Z</published>
+    <updated>2016-05-29T06:11:57.073Z</updated>
+    <content type="html"><![CDATA[<h2 id="GreenDao官方简介">GreenDao官方简介</h2><p>greenDAO is an open source library for Android providing an easy to use interface to SQLite databases to help developers handle data efficiently – relieving developers from dealing with low-level database requirements while saving development time. SQLite is an awesome embedded relational database. Still, writing SQL and parsing query results are quite tedious and time-consuming tasks. greenDAO frees you from these by mapping Java objects to database tables (often called ORM). This way you can store, update, delete, and query for Java objects using a simple object oriented API.</p>
+<h2 id="<!-more_->"><a id="more"></a></h2><h3 id="GreenDao思维导图(关系映射(ORM))">GreenDao思维导图(关系映射(ORM))</h3><p><img src="http://ww4.sinaimg.cn/large/005yEbTbgw1f4c5vwqsoqj308w02k0su.jpg" alt="思维导图"></p>
+<h3 id="自动生成GreedDAO资源()">自动生成GreedDAO资源()</h3><p><img src="http://ww2.sinaimg.cn/large/005yEbTbgw1f4c67jcxjnj30hs08m400.jpg" alt="自动生成GreedDAO资源"></p>
+<p>如果我们需要在项目中使用GreenDao，那么就需要我们创建一个新的Java Project,用于自动生成Bean、DAO、DaoMaster、DaoSession类。</p>
+<h3 id="关于DAO、DaoMaster、DaoSession、Entity流程">关于DAO、DaoMaster、DaoSession、Entity流程</h3><p>！<a href="http://ww3.sinaimg.cn/large/005yEbTbgw1f4c6g1qc8pj304607kmxd.jpg" target="_blank" rel="external">流程图</a></p>
+<p>！<a href="http://ww1.sinaimg.cn/large/005yEbTbgw1f4c6gqbdrxj305006rq30.jpg" target="_blank" rel="external">流程图</a></p>
+<p>通过流程图可以看出Dao类操作Entity类，而DaoSession是负责创建和管理Dao类，DaoSession是由DaoMaster负责创建的。可以看出当我们在对数据库进行操作时，为了避免创建多个DaoMaster和DaoSession,可以在继承applacation类中(程序入口)，定义一个全局变量。例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">        create DaoMaster</span><br><span class="line"><span class="decorator">        @param context</span></span><br><span class="line"><span class="decorator">        @return</span></span><br><span class="line">     */</span><br><span class="line">    public static DaoMaster getDaoMaster(Context context) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (null == daoMaster) &#123;</span><br><span class="line"></span><br><span class="line">            DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context,DATABASE_NAME,null);</span><br><span class="line">            daoMaster = new DaoMaster(helper.getWritableDatabase());</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> daoMaster;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">        get DaoSession</span><br><span class="line"><span class="decorator">        @param context</span></span><br><span class="line"><span class="decorator">        @return</span></span><br><span class="line">     */</span><br><span class="line">    public static DaoSession getDaoSession(Context context) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (null == daoSession) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (null == daoMaster) &#123;</span><br><span class="line">                daoMaster = getDaoMaster(context);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            daoSession = daoMaster.newSession();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> daoSession;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="基本配置">基本配置</h2><h3 id="一-在android工程中配置GreenDao_Code_Generation模块">一.在android工程中配置GreenDao Code Generation模块</h3><pre><code>   1.在 .src/main 目录下新建一个与 java同层级的「java-gen」目录，用于存放由 greenDAO 生成的 Bean、DAO、DaoMaster、DaoSession 等类。
+   ！[<span class="link_label">流程图</span>](<span class="link_url">http://ww1.sinaimg.cn/large/005yEbTbgw1f4c79i9txmj309703y74e.jpg</span>)
+
+   2.配置 Android 工程（app）的 build.gradle，如图分别添加 sourceSets 与 dependencies。
+   ！[<span class="link_label">流程图</span>](<span class="link_url">http://ww3.sinaimg.cn/large/005yEbTbgw1f4c7blimymj30hs0f2ade.jpg</span>)
+
+二.创建纯Java工程
+   1.通过 File -&gt; New -&gt; New Module -&gt; Java Library -&gt; 填写相应的包名与类名 -&gt; Finish.      
+   ！[<span class="link_label">流程图</span>](<span class="link_url">http://ww2.sinaimg.cn/large/005yEbTbgw1f4c78g5lpuj30cm0a0gnq.jpg</span>)
+   ！[<span class="link_label">流程图</span>](<span class="link_url">http://ww1.sinaimg.cn/large/005yEbTbgw1f4c7fq5qpej30t40h9dic.jpg</span>)
+
+   2.配置新模块的 build.gradle，添加 dependencies.
+   ！[<span class="link_label">流程图</span>](<span class="link_url">http://ww4.sinaimg.cn/large/005yEbTbgw1f4c7i0fi4fj30kv06aaaz.jpg</span>)
+
+   3.编写新模块的类用于生成java-gen下的DaoMaster、DaoSession、Dao、Entity类的生成
+
+   <span class="xml"><span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">     public class DaoGen &#123;</span><br><span class="line"></span><br><span class="line">     public static  void main(String [] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">         Schema schema = new Schema(1,"project.kylin.greendao");</span><br><span class="line"></span><br><span class="line">  //EntityBean is Associated database table,table name is class name</span><br><span class="line">         Entity userBean = schema.addEntity("User");</span><br><span class="line"></span><br><span class="line">  //add field</span><br><span class="line">      userBean.addIdProperty();</span><br><span class="line">      userBean.addStringProperty("uid").notNull();</span><br><span class="line">      userBean.addDateProperty("date");</span><br><span class="line"></span><br><span class="line"> //generator gao</span><br><span class="line">     	   new DaoGenerator().generateAll(schema,"app/src/main/java-gen");</span><br><span class="line">  		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span></span>
+
+三.生成 DAO 文件
+<span class="code">    * 执行 java 工程，如一切正常，你将会在控制台看到如下日志，并且在主工程「java-gen」下会发现生成了DaoMaster、DaoSession、UserDao、User共4个类文件。(从console查看编译结果)  </span>
+</code></pre><hr>
+<h2 id="升级和比较">升级和比较</h2><h3 id="升级">升级</h3><pre><code>[<span class="link_label">GreenDao数据库升级解决方案</span>](<span class="link_url">http://blog.csdn.net/growth58/article/details/50453038</span>) 
+</code></pre><h3 id="性能比较">性能比较</h3><pre><code>[<span class="link_label">GreenDao与LiteOrm</span>](<span class="link_url">https://github.com/litesuits/for-test/blob/master/DataBaseTest/README.md</span>)
+</code></pre><hr>
+<h2 id="参考文献">参考文献</h2><pre><code>*[<span class="link_label">官网</span>](<span class="link_url">http://greendao-orm.com/</span>)
+*[<span class="link_label">参考demo</span>](<span class="link_url">https://github.com/greenrobot/greenDAO</span>)          
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="GreenDao官方简介">GreenDao官方简介</h2><p>greenDAO is an open source library for Android providing an easy to use interface to SQLite databases to help developers handle data efficiently – relieving developers from dealing with low-level database requirements while saving development time. SQLite is an awesome embedded relational database. Still, writing SQL and parsing query results are quite tedious and time-consuming tasks. greenDAO frees you from these by mapping Java objects to database tables (often called ORM). This way you can store, update, delete, and query for Java objects using a simple object oriented API.</p>
+<h2 id="<!-more_->">]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://walk-code.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Rxjava入门]]></title>
@@ -52,7 +104,7 @@
     <link href="http://walk-code.github.io/2016/01/18/git-%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E6%AD%A5%E9%AA%A4/"/>
     <id>http://walk-code.github.io/2016/01/18/git-项目上传步骤/</id>
     <published>2016-01-18T14:19:51.000Z</published>
-    <updated>2016-01-18T15:22:11.454Z</updated>
+    <updated>2016-05-08T07:54:52.898Z</updated>
     <content type="html"><![CDATA[<p>先初始化Git:<br><code>Git Bash</code></p>
 <blockquote>
 <ul>
@@ -60,8 +112,7 @@
 <li><code>git config --global user.email you@email.address</code> //github的账号</li>
 </ul>
 </blockquote>
-<p>上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘your@email.address’ -t rsa 会出现让你输入SSH密钥的存放位置，这个可以不用理会，直接回车使用默认路径。接着就是你想要的密码，SSHkey就生成了。找到SSH密钥存放的位置，打开id_rsa.pub复制里面的内容（notepad++或者记事本打开）原封不动的复制，接着直接在打开GitHub，添加add SSH key。</p>
-<p>做完这些可以说已经基本配置完成了，现在就可以上传自己的代码了，在你想上传的文件的下先<code>git init here</code>也可以在GitBash中进入这个文件，输入<code>git init</code></p>
+<p>上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘your@email.address’ -t rsa 会出现让你输入SSH密钥的存放位置，这个可以不用理会，直接回车使用默认路径。接着就是你想要的密码，SSHkey就生成了。找到SSH密钥存放的位置，打开id_rsa.pub复制里面的内容（notepad++或者记事本打开）原封不动的复制，接着直接在打开GitHub，添加add SSH key。<br><a id="more"></a><br>做完这些可以说已经基本配置完成了，现在就可以上传自己的代码了，在你想上传的文件的下先<code>git init here</code>也可以在GitBash中进入这个文件，输入<code>git init</code></p>
 <blockquote>
 <ul>
 <li><code>git add</code> 选择你要添加到仓库的文件.</li>
@@ -116,7 +167,12 @@
     <![CDATA[<p>先初始化Git:<br><code>Git Bash</code></p>
 <blockquote>
 <ul>
-<li><code>git config --global user.name &quot;Your Real Name&quot;</code>    //gi]]>
+<li><code>git config --global user.name &quot;Your Real Name&quot;</code>    //github的名字</li>
+<li><code>git config --global user.email you@email.address</code> //github的账号</li>
+</ul>
+</blockquote>
+<p>上传文件到GitHub，需要一个SSH的密钥，在shell中输入ssh-keygen -C ‘your@email.address’ -t rsa 会出现让你输入SSH密钥的存放位置，这个可以不用理会，直接回车使用默认路径。接着就是你想要的密码，SSHkey就生成了。找到SSH密钥存放的位置，打开id_rsa.pub复制里面的内容（notepad++或者记事本打开）原封不动的复制，接着直接在打开GitHub，添加add SSH key。<br>]]>
+    
     </summary>
     
   </entry>
@@ -126,14 +182,13 @@
     <link href="http://walk-code.github.io/2015/12/06/%E8%BF%87%E7%A8%8B/"/>
     <id>http://walk-code.github.io/2015/12/06/过程/</id>
     <published>2015-12-06T14:27:34.000Z</published>
-    <updated>2015-12-06T15:13:33.871Z</updated>
+    <updated>2016-05-08T07:55:08.762Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <ul>
 <li>杂文</li>
 </ul>
 </blockquote>
-<p>11月匆匆就这样子过去了，总体来说过得还算的上是充实，在工作上所面临的问题基本上就可以处理好。有时候过分的追求功能忽略了用户体验也是一件很糟糕的事，毕竟用户一看到一个”不友好”的界面，就会立马的删除掉，除了非常需要这个App除外。</p>
-<p>最近一直都在忙这个项目，希望它能早日的上线，把程序里所有的BUG都消灭掉，在把自己的代码优化了，之前看到一篇Blog，讲到不要盲目的去优化自己的代码，在保证其功能实现并且没有任何BUG的情况下，才好进行优化，这样才不会造成越来越多的错误，一定要注意自己的开发的效率，有时候一个 问题困扰自己太久，你可以选择把它给记下来，我是用印象笔记的，有一些知识点比较稀疏的也可以用它记下来，有事没事多翻翻也就OK了。</p>
+<p>11月匆匆就这样子过去了，总体来说过得还算的上是充实，在工作上所面临的问题基本上就可以处理好。有时候过分的追求功能忽略了用户体验也是一件很糟糕的事，毕竟用户一看到一个”不友好”的界面，就会立马的删除掉，除了非常需要这个App除外。<br><a id="more"></a><br>最近一直都在忙这个项目，希望它能早日的上线，把程序里所有的BUG都消灭掉，在把自己的代码优化了，之前看到一篇Blog，讲到不要盲目的去优化自己的代码，在保证其功能实现并且没有任何BUG的情况下，才好进行优化，这样才不会造成越来越多的错误，一定要注意自己的开发的效率，有时候一个 问题困扰自己太久，你可以选择把它给记下来，我是用印象笔记的，有一些知识点比较稀疏的也可以用它记下来，有事没事多翻翻也就OK了。</p>
 <p>拥有一个强大的身体才是，你能编程的前提，保证好自己每天的运动量，也就能好好的撸码了。最近在收集一下android的技能树，让自己的技能树更  加的完善起来。</p>
 <p><img src="http://ww3.sinaimg.cn/large/005yEbTbgw1eyqbtb3zy5j30jx1n1wlq.jpg" alt="cmd-markdown-logo">    </p>
 ]]></content>
@@ -143,7 +198,8 @@
 <li>杂文</li>
 </ul>
 </blockquote>
-<p>11月匆匆就这样子过去了，总体来说过得还算的上是充实，在工作上所面临的问题基本上就可以处理好。有时候过分的追求功能忽略了用户体验也是一件很糟糕的事，毕竟用户一看到一个”不友好]]>
+<p>11月匆匆就这样子过去了，总体来说过得还算的上是充实，在工作上所面临的问题基本上就可以处理好。有时候过分的追求功能忽略了用户体验也是一件很糟糕的事，毕竟用户一看到一个”不友好”的界面，就会立马的删除掉，除了非常需要这个App除外。<br>]]>
+    
     </summary>
     
       <category term="随笔" scheme="http://walk-code.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
@@ -155,8 +211,8 @@
     <link href="http://walk-code.github.io/2015/11/10/Android%E4%BC%A0%E9%80%92%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
     <id>http://walk-code.github.io/2015/11/10/Android传递对象的三种方式/</id>
     <published>2015-11-10T14:52:15.000Z</published>
-    <updated>2015-11-10T16:05:25.080Z</updated>
-    <content type="html"><![CDATA[<p>在Android中，Activity和Fragment、Activity和Fragment之间传递对象，可以通过对象序列化存入Intent,Bundle进行传递，也可以通过将对象转化成Json字符串，进行传递。<br>对象的序列化也可以通过使用Java的’Serializable’的接口、’Parcelable’接口(Android)。转化成’Json字符串’，可以使用Gson的类库。</p>
+    <updated>2016-05-08T07:51:13.070Z</updated>
+    <content type="html"><![CDATA[<p>在Android中，Activity和Fragment、Activity和Fragment之间传递对象，可以通过对象序列化存入Intent,Bundle进行传递，也可以通过将对象转化成Json字符串，进行传递。<br>对象的序列化也可以通过使用Java的’Serializable’的接口、’Parcelable’接口(Android)。转化成’Json字符串’，可以使用Gson的类库。<br><a id="more"></a></p>
 <h2 id="Serializable">Serializable</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Goods implements Serializable&#123;</span><br><span class="line">    private String images;</span><br><span class="line">	private String goods_name;</span><br><span class="line">	private double price;</span><br><span class="line">	private int stock;</span><br><span class="line">	private String details;</span><br><span class="line">	//setting&amp;getting method</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>传递数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Goods goods = new Goods();</span><br><span class="line">goods.setImages(...);</span><br><span class="line">goods.setPrice(...);</span><br><span class="line">       ....</span><br><span class="line">Intent intent = new Intent(this,Activity);</span><br><span class="line">intent.putExtra(<span class="string">"goods"</span>,goods);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
@@ -177,7 +233,8 @@
 <p>However, you can use Serializable objects in Intents’<br>上文的意思指Serializable是java提供的接口，Parcelable是Google提供的接口,在AIDL(Android内部进程通讯接口)和Binder(进程通讯机制)中会用到Parcelable，无论怎样’Serializable’对象都能在Intent中使用。 Serializable简单易用，Parcelable速度至上</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>在Android中，Activity和Fragment、Activity和Fragment之间传递对象，可以通过对象序列化存入Intent,Bundle进行传递，也可以通过将对象转化成Json字符串，进行传递。<br>对象的序列化也可以通过使用Java的’Serializa]]>
+    <![CDATA[<p>在Android中，Activity和Fragment、Activity和Fragment之间传递对象，可以通过对象序列化存入Intent,Bundle进行传递，也可以通过将对象转化成Json字符串，进行传递。<br>对象的序列化也可以通过使用Java的’Serializable’的接口、’Parcelable’接口(Android)。转化成’Json字符串’，可以使用Gson的类库。<br>]]>
+    
     </summary>
     
       <category term="笔记" scheme="http://walk-code.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
@@ -189,15 +246,15 @@
     <link href="http://walk-code.github.io/2015/10/07/%E6%97%A2%E6%98%AF%E7%BB%93%E6%9D%9F%E4%B9%9F%E6%98%AF%E5%BC%80%E5%A7%8B%EF%BC%8C%E4%B8%8D%E8%A6%81%E6%94%BE%E5%BC%83%E6%9C%BA%E4%BC%9A/"/>
     <id>http://walk-code.github.io/2015/10/07/既是结束也是开始，不要放弃机会/</id>
     <published>2015-10-07T13:01:43.000Z</published>
-    <updated>2015-10-07T14:03:37.147Z</updated>
-    <content type="html"><![CDATA[<p>从14年的7月份离开学校开始，开始踏入这个社会，有种初生牛犊不怕虎的感觉，远离了广州来到了深圳，<br>记得我的第一份offer是和我同学一起，公司是居住办公一体的住宅区，当时在那里的感觉让我觉得这并不<br>像一家公司(略微的倜傥)，几经辛苦终于招满了人，我就开始了在这里连续上了两个月的班，一开始就是抱<br>着求学的心态去学习的(现在我觉得我的想法很天真，下面会说明，此处省略。。。T^T)。        </p>
-<p>那时候也就不断的投简历，期间也收到了了几份offer，也面试过几家，期间一家公司令我印象十分深刻，在一个<br>小的办公室，技术主管穿着拖鞋，把我带到了办公室，开始问我一些关于Android的基本知识，在这里还是要<br>十分感谢郭神的书，基本上都有涉及到，我也顺利的通过了面试，当然他们也挺满意的，之后就没有了。当时之所以放弃，还是源于我的心态。  </p>
+    <updated>2016-05-08T08:23:17.367Z</updated>
+    <content type="html"><![CDATA[<p>从14年的7月份离开学校开始，开始踏入这个社会，有种初生牛犊不怕虎的感觉，远离了广州来到了深圳，<br>记得我的第一份offer是和我同学一起，公司是居住办公一体的住宅区，当时在那里的感觉让我觉得这并不<br>像一家公司(略微的倜傥)，几经辛苦终于招满了人，我就开始了在这里连续上了两个月的班，一开始就是抱<br>着求学的心态去学习的(现在我觉得我的想法很天真，下面会说明，此处省略。。。T^T)。<br><a id="more"></a><br>那时候也就不断的投简历，期间也收到了了几份offer，也面试过几家，期间一家公司令我印象十分深刻，在一个<br>小的办公室，技术主管穿着拖鞋，把我带到了办公室，开始问我一些关于Android的基本知识，在这里还是要<br>十分感谢郭神的书，基本上都有涉及到，我也顺利的通过了面试，当然他们也挺满意的，之后就没有了。当时之所以放弃，还是源于我的心态。  </p>
 <p>我接到的最后一家offer是做电子芯片的，公司环境优雅清新，自少会让我觉得写代码的时候不会是一片灰蒙蒙<br>的感觉，我很喜欢这种环境，当然技术主管人也挺好的，在笔试中去落了下来，从算法等问题基本没有涉及过，面试官也挺好的，最终还是在笔试中败下阵。  </p>
 <p>由于家里出了一下事，年后就一直呆在家，在二线或者是三线的城市搞Android的是在是太少了，期间收到两份offer，在面试中我们聊的都很开，我觉得这次有戏了，晚上回到家就接到电话了，也满足了我的要求，但是我最终还是决定不去，老板是挺好的一个人.  </p>
 <p>几经波折终于在一家办公楼找到了一份job(与专业无关)，从事着这份金融行业接近半年了，家里的情况也得到了缓解，突然觉得一个人没有一门技术感觉心里不踏实，结果又打算从新回到IT行业中。回想起来还真是几经波折。<br>![励志]</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>从14年的7月份离开学校开始，开始踏入这个社会，有种初生牛犊不怕虎的感觉，远离了广州来到了深圳，<br>记得我的第一份offer是和我同学一起，公司是居住办公一体的住宅区，当时在那里的感觉让我觉得这并不<br>像一家公司(略微的倜傥)，几经辛苦终于招满了人，我就开始了在这里]]>
+    <![CDATA[<p>从14年的7月份离开学校开始，开始踏入这个社会，有种初生牛犊不怕虎的感觉，远离了广州来到了深圳，<br>记得我的第一份offer是和我同学一起，公司是居住办公一体的住宅区，当时在那里的感觉让我觉得这并不<br>像一家公司(略微的倜傥)，几经辛苦终于招满了人，我就开始了在这里连续上了两个月的班，一开始就是抱<br>着求学的心态去学习的(现在我觉得我的想法很天真，下面会说明，此处省略。。。T^T)。<br>]]>
+    
     </summary>
     
       <category term="心情" scheme="http://walk-code.github.io/tags/%E5%BF%83%E6%83%85/"/>
