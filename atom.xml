@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不努力未来永远只是一个梦]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2016-05-29T06:33:12.344Z</updated>
+  <updated>2016-05-29T06:38:43.535Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://walk-code.github.io/2016/05/29/%E6%B5%85%E7%94%A8GreenDao/"/>
     <id>http://walk-code.github.io/2016/05/29/浅用GreenDao/</id>
     <published>2016-05-29T04:41:43.000Z</published>
-    <updated>2016-05-29T06:33:12.344Z</updated>
+    <updated>2016-05-29T06:38:43.535Z</updated>
     <content type="html"><![CDATA[<h2 id="GreenDao官方简介">GreenDao官方简介</h2><p>greenDAO is an open source library for Android providing an easy to use interface to SQLite databases to help developers handle data efficiently – relieving developers from dealing with low-level database requirements while saving development time. SQLite is an awesome embedded relational database. Still, writing SQL and parsing query results are quite tedious and time-consuming tasks. greenDAO frees you from these by mapping Java objects to database tables (often called ORM). This way you can store, update, delete, and query for Java objects using a simple object oriented API.</p>
 <h2 id="<!-more_->"><a id="more"></a></h2><h3 id="GreenDao思维导图(关系映射(ORM))">GreenDao思维导图(关系映射(ORM))</h3><p><img src="http://ww4.sinaimg.cn/large/005yEbTbgw1f4c5vwqsoqj308w02k0su.jpg" alt="思维导图"></p>
 <h3 id="自动生成GreedDAO资源()">自动生成GreedDAO资源()</h3><p><img src="http://ww2.sinaimg.cn/large/005yEbTbgw1f4c67jcxjnj30hs08m400.jpg" alt="自动生成GreedDAO资源"></p>
@@ -48,7 +48,10 @@
 <hr>
 <h2 id="参考文献">参考文献</h2><ul>
 <li><a href="http://greendao-orm.com/" target="_blank" rel="external">官网</a></li>
-<li><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">参考demo</a>          </li>
+<li><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">参考demo</a></li>
+</ul>
+<h2 id="其他开源的ORM">其他开源的ORM</h2><ul>
+<li><a href="https://github.com/Raizlabs/DBFlow" target="_blank" rel="external">DBFlow</a></li>
 </ul>
 ]]></content>
     <summary type="html">
