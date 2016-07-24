@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不努力未来永远只是一个梦]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2016-07-24T02:25:44.350Z</updated>
+  <updated>2016-07-24T02:30:53.748Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -19,12 +19,12 @@
     <link href="http://walk-code.github.io/2016/07/24/SeasLog%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
     <id>http://walk-code.github.io/2016/07/24/SeasLog的基本使用/</id>
     <published>2016-07-24T01:47:08.000Z</published>
-    <updated>2016-07-24T02:25:44.350Z</updated>
+    <updated>2016-07-24T02:30:53.748Z</updated>
     <content type="html"><![CDATA[<h2 id="SeasLog简介">SeasLog简介</h2><p>SeasLog是一个日志的拓展,日志作为系统或者软件、应用的运行记录。通过对日志进行分析，可以让我们更好的了解应用的运行情况，也可以逐步的对用户的操作、用户习惯进行分析，从而优化，对于应用中的问题，能快速的得到定位，方便Developer解决。<br><a id="more"></a></p>
 <h2 id="为什么要使用SeasLog">为什么要使用SeasLog</h2><p>php内置error_log、syslog函数功能强大且性能极好，但由于各种缺陷(error_log无错误级别、无固定格式，syslog不分模块、与系统日志混合)，灵活度降低了很多，不能满足应用需求。  </p>
 <p>好消息是，有不少第三方的log类库弥补了上述缺陷，如log4php、plog、Analog等(当然也有很多应用在项目中自己开发的log类)。其中以log4php最为著名，设计精良、格式完美、文档完善、功能强大。推荐。  </p>
 <p>不过log4php在性能方面表现非常差,下图是SeasLog与log4php的ab并发性能测试( 测试环境:Ubuntu12.04单机,CPU I3,内存 16G,硬盘 SATA 7200)<br>以下引用@<a href="https://github.com/Neeke" target="_blank" rel="external">Neeke</a>的统计第三方(log4php)性能测试的一组图  </p>
-<p><img src="https://raw.githubusercontent.com/Neeke/SeasLog/master/tests/SeasLogVSlog4php.png&quot;性能测试&quot;" alt="性能测试">  </p>
+<p><img src="http://ww3.sinaimg.cn/large/005yEbTbgw1f64sh6r3o6j30lz0ac0tc.jpg&quot;性能测试&quot;" alt="性能测试">  </p>
 <p>那么有没有一种log类库满足以下需求呢: </p>
 <ul>
 <li>分模块、分级别  </li>
