@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不努力未来永远只是一个梦]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2016-05-29T06:40:36.567Z</updated>
+  <updated>2016-07-24T02:25:44.350Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -13,6 +13,287 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[SeasLog的基本使用]]></title>
+    <link href="http://walk-code.github.io/2016/07/24/SeasLog%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>http://walk-code.github.io/2016/07/24/SeasLog的基本使用/</id>
+    <published>2016-07-24T01:47:08.000Z</published>
+    <updated>2016-07-24T02:25:44.350Z</updated>
+    <content type="html"><![CDATA[<h2 id="SeasLog简介">SeasLog简介</h2><p>SeasLog是一个日志的拓展,日志作为系统或者软件、应用的运行记录。通过对日志进行分析，可以让我们更好的了解应用的运行情况，也可以逐步的对用户的操作、用户习惯进行分析，从而优化，对于应用中的问题，能快速的得到定位，方便Developer解决。<br><a id="more"></a></p>
+<h2 id="为什么要使用SeasLog">为什么要使用SeasLog</h2><p>php内置error_log、syslog函数功能强大且性能极好，但由于各种缺陷(error_log无错误级别、无固定格式，syslog不分模块、与系统日志混合)，灵活度降低了很多，不能满足应用需求。  </p>
+<p>好消息是，有不少第三方的log类库弥补了上述缺陷，如log4php、plog、Analog等(当然也有很多应用在项目中自己开发的log类)。其中以log4php最为著名，设计精良、格式完美、文档完善、功能强大。推荐。  </p>
+<p>不过log4php在性能方面表现非常差,下图是SeasLog与log4php的ab并发性能测试( 测试环境:Ubuntu12.04单机,CPU I3,内存 16G,硬盘 SATA 7200)<br>以下引用@<a href="https://github.com/Neeke" target="_blank" rel="external">Neeke</a>的统计第三方(log4php)性能测试的一组图  </p>
+<p><img src="https://raw.githubusercontent.com/Neeke/SeasLog/master/tests/SeasLogVSlog4php.png&quot;性能测试&quot;" alt="性能测试">  </p>
+<p>那么有没有一种log类库满足以下需求呢: </p>
+<ul>
+<li>分模块、分级别  </li>
+<li>配置简单(最好是勿须配置)  </li>
+<li>日志格式清晰易读</li>
+<li>应用简单、性能很棒  </li>
+</ul>
+<p>SeasLog 正是应此需求而生。  </p>
+<hr>
+<p>根据tips可以这样写,基于thinkphp,目录结构ThinkPHP\Library\Vendor\SeasLog\Logs.class.php：  </p>
+<pre><code class="python">&lt;?php
+
+namespace Vendor\SeasLog;
+/*
+ * author kylin
+ * data 2016-7-17
+ * */
+
+class Logs
+{
+
+    /**
+     * 获取访问者的ip 请求的uri
+     *
+     * return 访问者的ip 请求的uri     ip_address | request_uri
+     */
+    static public function getIpUri() {
+        return $_SERVER['REMOTE_ADDR'] . ' | ' . $_SERVER['REQUEST_URI'] . ' | ';
+    }
+
+    /**
+     * 设置日志的根路径
+     * @param $basePath
+     *
+     * */
+    static public function setBasePath($basePath) {
+        \SeasLog::setBasePath($basePath);
+    }
+
+    /**
+     *获取日志的根路径
+     *
+     * retrun string
+     * */
+    static public function getBasePath() {
+        return \SeasLog::getBasePath();
+    }
+
+    /**
+     * 设置模块目录
+     * @param $module
+     *
+     * */
+    static public function setLogger($module) {
+        \SeasLog::setLogger($module);
+    }
+
+    /**
+     * 获取最后一次的设置的模块
+     * return string
+     *
+     * */
+    static public function getLastLogger() {
+        return \SeasLog::getLastLogger();
+    }
+
+    /**
+     *统计所有类型（或单个类型）行数
+     * @param string $level
+     * @param string $log_path
+     * @param null $key_word
+     *
+     * @return array | long
+     * */
+    static public function analyzerCount($level = 'all', $log_path = '*', $key_word = NULL) {
+        return array();
+    }
+
+    /**
+     * 以数组形式，快速取出某类型log的各行详情
+     *
+     * @param        $level
+     * @param string $log_path
+     * @param null $key_word
+     * @param int $start
+     * @param int $limit
+     * @param        $order 默认为正序 SEASLOG_DETAIL_ORDER_ASC，可选倒序 SEASLOG_DETAIL_ORDER_DESC
+     *
+     * @return array
+     */
+    static public function analyzerDetail($level = SEASLOG_INFO, $log_path = '*', $key_word = NULL, $start = 1, $limit = 20, $order = SEASLOG_DETAIL_ORDER_ASC){
+        return SeasLog::analyzerDetail($level = SEASLOG_INFO, $log_path = '*', $key_word = NULL, $start = 1, $limit = 20, $order = SEASLOG_DETAIL_ORDER_ASC);
+    }
+
+    /**
+     * 获取当前日志的Buffer的内容
+     * return array
+     * */
+    static public function getBuffer() {
+        return getBuffer();
+    }
+
+    /**
+     * 将buffer中的日志立刻刷到硬盘
+     *
+     * @return bool
+     */
+    static public function flushBuffer(){
+        return true;
+    }
+
+    /**
+     * 记录debug日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function debug($message,array $content = array(),$module = ''){
+
+        #$level = SEASLOG_DEBUG
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::debug($message,$content,$module);
+    }
+
+    /**
+     * 记录info日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     *
+     * */
+    static public function info($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_INFO
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::info($message,$content,$module);
+    }
+
+    /**
+     * 记录notice日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     *
+     * */
+    static public function notice($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_NOTICE
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::notice($message,$content,$module);
+    }
+
+    /**
+     * 记录warning日志
+     * @param $message
+     * @param array  $content
+     * @param string $module
+     * */
+    static public function warning($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_WARNING
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::warning($message,$content,$module);
+    }
+
+    /**
+     * 记录error日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function error($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_ERROR
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::error($message,$content,$module);
+    }
+
+    /**
+     * 记录critical日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function critical($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_CRITICAL
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::critical($message,$content,$module);
+    }
+
+    /**
+     * 记录alert日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function alert($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_ALERT
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::alert($message,$content,$module);
+    }
+
+    /**
+     * 记录emergency日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function emergency($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_EMERGENCY
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::emergency($message,$content,$module);
+    }
+
+    /**
+     * 通用日志方法
+     * @param $level
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function log($level,$message,array $content = array(),$module = '') {
+
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::log($level,$message,$content,$module);
+    }
+
+}
+</code></pre>
+<h3 id="附">附</h3><p>@Neeke <a href="https://github.com/Neeke/SeasLog]" target="_blank" rel="external">https://github.com/Neeke/SeasLog</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="SeasLog简介">SeasLog简介</h2><p>SeasLog是一个日志的拓展,日志作为系统或者软件、应用的运行记录。通过对日志进行分析，可以让我们更好的了解应用的运行情况，也可以逐步的对用户的操作、用户习惯进行分析，从而优化，对于应用中的问题，能快速的得到定位，方便Developer解决。<br>]]>
+    
+    </summary>
+    
+      <category term="PHP日志拓展" scheme="http://walk-code.github.io/tags/PHP%E6%97%A5%E5%BF%97%E6%8B%93%E5%B1%95/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[浅用GreenDao]]></title>
@@ -236,48 +517,6 @@
     </summary>
     
       <category term="笔记" scheme="http://walk-code.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[既是结束也是开始，不要放弃机会]]></title>
-    <link href="http://walk-code.github.io/2015/10/07/%E6%97%A2%E6%98%AF%E7%BB%93%E6%9D%9F%E4%B9%9F%E6%98%AF%E5%BC%80%E5%A7%8B%EF%BC%8C%E4%B8%8D%E8%A6%81%E6%94%BE%E5%BC%83%E6%9C%BA%E4%BC%9A/"/>
-    <id>http://walk-code.github.io/2015/10/07/既是结束也是开始，不要放弃机会/</id>
-    <published>2015-10-07T13:01:43.000Z</published>
-    <updated>2016-05-08T08:23:17.367Z</updated>
-    <content type="html"><![CDATA[<p>从14年的7月份离开学校开始，开始踏入这个社会，有种初生牛犊不怕虎的感觉，远离了广州来到了深圳，<br>记得我的第一份offer是和我同学一起，公司是居住办公一体的住宅区，当时在那里的感觉让我觉得这并不<br>像一家公司(略微的倜傥)，几经辛苦终于招满了人，我就开始了在这里连续上了两个月的班，一开始就是抱<br>着求学的心态去学习的(现在我觉得我的想法很天真，下面会说明，此处省略。。。T^T)。<br><a id="more"></a><br>那时候也就不断的投简历，期间也收到了了几份offer，也面试过几家，期间一家公司令我印象十分深刻，在一个<br>小的办公室，技术主管穿着拖鞋，把我带到了办公室，开始问我一些关于Android的基本知识，在这里还是要<br>十分感谢郭神的书，基本上都有涉及到，我也顺利的通过了面试，当然他们也挺满意的，之后就没有了。当时之所以放弃，还是源于我的心态。  </p>
-<p>我接到的最后一家offer是做电子芯片的，公司环境优雅清新，自少会让我觉得写代码的时候不会是一片灰蒙蒙<br>的感觉，我很喜欢这种环境，当然技术主管人也挺好的，在笔试中去落了下来，从算法等问题基本没有涉及过，面试官也挺好的，最终还是在笔试中败下阵。  </p>
-<p>由于家里出了一下事，年后就一直呆在家，在二线或者是三线的城市搞Android的是在是太少了，期间收到两份offer，在面试中我们聊的都很开，我觉得这次有戏了，晚上回到家就接到电话了，也满足了我的要求，但是我最终还是决定不去，老板是挺好的一个人.  </p>
-<p>几经波折终于在一家办公楼找到了一份job(与专业无关)，从事着这份金融行业接近半年了，家里的情况也得到了缓解，突然觉得一个人没有一门技术感觉心里不踏实，结果又打算从新回到IT行业中。回想起来还真是几经波折。<br>![励志]</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>从14年的7月份离开学校开始，开始踏入这个社会，有种初生牛犊不怕虎的感觉，远离了广州来到了深圳，<br>记得我的第一份offer是和我同学一起，公司是居住办公一体的住宅区，当时在那里的感觉让我觉得这并不<br>像一家公司(略微的倜傥)，几经辛苦终于招满了人，我就开始了在这里连续上了两个月的班，一开始就是抱<br>着求学的心态去学习的(现在我觉得我的想法很天真，下面会说明，此处省略。。。T^T)。<br>]]>
-    
-    </summary>
-    
-      <category term="心情" scheme="http://walk-code.github.io/tags/%E5%BF%83%E6%83%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://walk-code.github.io/2015/10/07/hello-world/"/>
-    <id>http://walk-code.github.io/2015/10/07/hello-world/</id>
-    <published>2015-10-07T12:58:24.508Z</published>
-    <updated>2015-09-17T03:28:46.623Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
-    </summary>
     
   </entry>
   

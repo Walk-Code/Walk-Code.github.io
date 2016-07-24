@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="笔记," />
+  <meta name="keywords" content="PHP日志拓展," />
 
 
 
@@ -59,23 +59,17 @@
 
 
 
-<meta name="description" content="传送门 RxJava中文翻译亦或RxJava官方文档
-1.为什么要用RxJava这里引用一段Airbnb Developer的一段话:
-我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。">
+<meta name="description" content="SeasLog简介SeasLog是一个日志的拓展,日志作为系统或者软件、应用的运行记录。通过对日志进行分析，可以让我们更好的了解应用的运行情况，也可以逐步的对用户的操作、用户习惯进行分析，从而优化，对于应用中的问题，能快速的得到定位，方便Developer解决。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rxjava入门">
-<meta property="og:url" content="http://walk-code.github.io/2016/04/12/Rxjava入门/index.html">
+<meta property="og:title" content="SeasLog的基本使用">
+<meta property="og:url" content="http://walk-code.github.io/2016/07/24/SeasLog的基本使用/index.html">
 <meta property="og:site_name" content="Goalkeeper">
-<meta property="og:description" content="传送门 RxJava中文翻译亦或RxJava官方文档
-1.为什么要用RxJava这里引用一段Airbnb Developer的一段话:
-我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgw1f2wongssb4j30u20ccabm.jpg">
-<meta property="og:updated_time" content="2016-05-04T13:24:03.621Z">
+<meta property="og:description" content="SeasLog简介SeasLog是一个日志的拓展,日志作为系统或者软件、应用的运行记录。通过对日志进行分析，可以让我们更好的了解应用的运行情况，也可以逐步的对用户的操作、用户习惯进行分析，从而优化，对于应用中的问题，能快速的得到定位，方便Developer解决。">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neeke/SeasLog/master/tests/SeasLogVSlog4php.png"性能测试"">
+<meta property="og:updated_time" content="2016-07-24T02:25:44.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rxjava入门">
-<meta name="twitter:description" content="传送门 RxJava中文翻译亦或RxJava官方文档
-1.为什么要用RxJava这里引用一段Airbnb Developer的一段话:
-我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。">
+<meta name="twitter:title" content="SeasLog的基本使用">
+<meta name="twitter:description" content="SeasLog简介SeasLog是一个日志的拓展,日志作为系统或者软件、应用的运行记录。通过对日志进行分析，可以让我们更好的了解应用的运行情况，也可以逐步的对用户的操作、用户习惯进行分析，从而优化，对于应用中的问题，能快速的得到定位，方便Developer解决。">
 
 
 
@@ -93,7 +87,7 @@
   };
 </script>
 
-  <title> Rxjava入门 | Goalkeeper </title>
+  <title> SeasLog的基本使用 | Goalkeeper </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +267,7 @@
             
             
               
-                Rxjava入门
+                SeasLog的基本使用
               
             
           </h1>
@@ -285,8 +279,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T23:27:10+08:00" content="2016-04-12">
-              2016-04-12
+            <time itemprop="dateCreated" datetime="2016-07-24T09:47:08+08:00" content="2016-07-24">
+              2016-07-24
             </time>
           </span>
 
@@ -296,8 +290,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/12/Rxjava入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/Rxjava入门/" itemprop="commentsCount"></span>
+                <a href="/2016/07/24/SeasLog的基本使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/SeasLog的基本使用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -319,22 +313,272 @@
       
 
       
-        <p><strong>传送门</strong> <a href="https://mcxiaoke.gitbooks.io/rxdocs/content/" target="_blank" rel="external">RxJava中文翻译</a>亦或<a href="http://reactivex.io/" target="_blank" rel="external">RxJava官方文档</a></p>
-<h3 id="1-为什么要用RxJava">1.为什么要用RxJava</h3><p>这里引用一段<a href="https://realm.io/cn/news/kau-felipe-lima-adopting-rxjava-airbnb-android/" target="_blank" rel="external">Airbnb Developer</a>的一段话:</p>
-<p>我们都知道 移动开发是困难的。移动用户期望即时响应，而且还有在不同的线程间来回切换的需求。除了主线程，你还要做网络连接，同时你还需要在后台处理其他的各种不同的事情。最重要的是，你不能阻塞 UI 线程。<br><a id="more"></a><br>RxJava 是解决这类问题的好方法，因为他能够使得线程间的切换比较容易。这已经集成在框架里面了。异步操作非常笨重而且容易出错，RxJava 使得你不用再这样做了，这也是你能把不同的线程组合在一起的原因。</p>
-<p>我们需要 RxJava 的真正原因其实是 我们的软件很烂。为什么我们有如此多的 bug？为什么我们需要 crash 报告工具来跟踪我们成千上万的 crash，或者多少用户已经对我们生气了？这里可能有些什么事情不对劲。</p>
-<p>我们需要改变；我觉得 imperative 编程是我们不应该采用的方法。当然，面向对象编程已经流行很多年了。它已经深入到了现代程序员的骨髓里了。每个人都盲目的使用它，但是它不是我们开发软件的必需品。</p>
-<p>Functional 编程是 RxJava 里面的概念，而且我觉得用这种方法，代码更加健壮，而且永远不需要维护状态了。代码更加可靠而且你知道它一定工作。</p>
-<p>底线：我们的问题是我们写了很多糟糕的代码，移动开发也是很困难的，而 RxJava 是解决这个问题的一个方案。</p>
-<h3 id="2-什么是RxJava">2.什么是RxJava</h3><p>官方简介:</p>
-<p>ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming.</p>
-<p><img src="http://ww1.sinaimg.cn/large/005yEbTbgw1f2wongssb4j30u20ccabm.jpg" alt=""></p>
-<p>废话不多说先来个Hello World.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//基本Observable</span><br><span class="line">Observable myObservable = Observable.create(new Observable.OnSubscribe() &#123;</span><br><span class="line"></span><br><span class="line">		public void call(Object sub) &#123;</span><br><span class="line">			((Subscriber)sub).onNext(<span class="string">"Hello World"</span>);</span><br><span class="line">			((Subscriber)sub).onCompleted();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;); </span><br><span class="line"></span><br><span class="line">//被消费</span><br><span class="line">Subscriber subscriber = new Subscriber() &#123;</span><br><span class="line"></span><br><span class="line">		public void onCompleted() &#123;</span><br><span class="line">						</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public void onError(Throwable arg0) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public void onNext(Object arg0) &#123;</span><br><span class="line">			System.out.println((String)arg0);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;;</span><br><span class="line">//上面代码所做的工作就是打印由Observable发送的字符串。现在我们有了myObservable和mySubscriber，就可以通过subscribe()函数把两者关联起来：	</span><br><span class="line">myObservable.subscribe(mySubscriber);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>结合Jvav8的新特效代码会变得更加的简洁</p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable observable = (Observable) Observable.just("Hello World").subscribe(s -&gt; System.out.println(s));</span><br></pre></td></tr></table></figure>
+        <h2 id="SeasLog简介">SeasLog简介</h2><p>SeasLog是一个日志的拓展,日志作为系统或者软件、应用的运行记录。通过对日志进行分析，可以让我们更好的了解应用的运行情况，也可以逐步的对用户的操作、用户习惯进行分析，从而优化，对于应用中的问题，能快速的得到定位，方便Developer解决。<br><a id="more"></a></p>
+<h2 id="为什么要使用SeasLog">为什么要使用SeasLog</h2><p>php内置error_log、syslog函数功能强大且性能极好，但由于各种缺陷(error_log无错误级别、无固定格式，syslog不分模块、与系统日志混合)，灵活度降低了很多，不能满足应用需求。  </p>
+<p>好消息是，有不少第三方的log类库弥补了上述缺陷，如log4php、plog、Analog等(当然也有很多应用在项目中自己开发的log类)。其中以log4php最为著名，设计精良、格式完美、文档完善、功能强大。推荐。  </p>
+<p>不过log4php在性能方面表现非常差,下图是SeasLog与log4php的ab并发性能测试( 测试环境:Ubuntu12.04单机,CPU I3,内存 16G,硬盘 SATA 7200)<br>以下引用@<a href="https://github.com/Neeke" target="_blank" rel="external">Neeke</a>的统计第三方(log4php)性能测试的一组图  </p>
+<p><img src="https://raw.githubusercontent.com/Neeke/SeasLog/master/tests/SeasLogVSlog4php.png&quot;性能测试&quot;" alt="性能测试">  </p>
+<p>那么有没有一种log类库满足以下需求呢: </p>
+<ul>
+<li>分模块、分级别  </li>
+<li>配置简单(最好是勿须配置)  </li>
+<li>日志格式清晰易读</li>
+<li>应用简单、性能很棒  </li>
+</ul>
+<p>SeasLog 正是应此需求而生。  </p>
+<hr>
+<p>根据tips可以这样写,基于thinkphp,目录结构ThinkPHP\Library\Vendor\SeasLog\Logs.class.php：  </p>
+<pre><code class="python">&lt;?php
+
+namespace Vendor\SeasLog;
+/*
+ * author kylin
+ * data 2016-7-17
+ * */
+
+class Logs
+{
+
+    /**
+     * 获取访问者的ip 请求的uri
+     *
+     * return 访问者的ip 请求的uri     ip_address | request_uri
+     */
+    static public function getIpUri() {
+        return $_SERVER['REMOTE_ADDR'] . ' | ' . $_SERVER['REQUEST_URI'] . ' | ';
+    }
+
+    /**
+     * 设置日志的根路径
+     * @param $basePath
+     *
+     * */
+    static public function setBasePath($basePath) {
+        \SeasLog::setBasePath($basePath);
+    }
+
+    /**
+     *获取日志的根路径
+     *
+     * retrun string
+     * */
+    static public function getBasePath() {
+        return \SeasLog::getBasePath();
+    }
+
+    /**
+     * 设置模块目录
+     * @param $module
+     *
+     * */
+    static public function setLogger($module) {
+        \SeasLog::setLogger($module);
+    }
+
+    /**
+     * 获取最后一次的设置的模块
+     * return string
+     *
+     * */
+    static public function getLastLogger() {
+        return \SeasLog::getLastLogger();
+    }
+
+    /**
+     *统计所有类型（或单个类型）行数
+     * @param string $level
+     * @param string $log_path
+     * @param null $key_word
+     *
+     * @return array | long
+     * */
+    static public function analyzerCount($level = 'all', $log_path = '*', $key_word = NULL) {
+        return array();
+    }
+
+    /**
+     * 以数组形式，快速取出某类型log的各行详情
+     *
+     * @param        $level
+     * @param string $log_path
+     * @param null $key_word
+     * @param int $start
+     * @param int $limit
+     * @param        $order 默认为正序 SEASLOG_DETAIL_ORDER_ASC，可选倒序 SEASLOG_DETAIL_ORDER_DESC
+     *
+     * @return array
+     */
+    static public function analyzerDetail($level = SEASLOG_INFO, $log_path = '*', $key_word = NULL, $start = 1, $limit = 20, $order = SEASLOG_DETAIL_ORDER_ASC){
+        return SeasLog::analyzerDetail($level = SEASLOG_INFO, $log_path = '*', $key_word = NULL, $start = 1, $limit = 20, $order = SEASLOG_DETAIL_ORDER_ASC);
+    }
+
+    /**
+     * 获取当前日志的Buffer的内容
+     * return array
+     * */
+    static public function getBuffer() {
+        return getBuffer();
+    }
+
+    /**
+     * 将buffer中的日志立刻刷到硬盘
+     *
+     * @return bool
+     */
+    static public function flushBuffer(){
+        return true;
+    }
+
+    /**
+     * 记录debug日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function debug($message,array $content = array(),$module = ''){
+
+        #$level = SEASLOG_DEBUG
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::debug($message,$content,$module);
+    }
+
+    /**
+     * 记录info日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     *
+     * */
+    static public function info($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_INFO
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::info($message,$content,$module);
+    }
+
+    /**
+     * 记录notice日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     *
+     * */
+    static public function notice($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_NOTICE
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::notice($message,$content,$module);
+    }
+
+    /**
+     * 记录warning日志
+     * @param $message
+     * @param array  $content
+     * @param string $module
+     * */
+    static public function warning($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_WARNING
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::warning($message,$content,$module);
+    }
+
+    /**
+     * 记录error日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function error($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_ERROR
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::error($message,$content,$module);
+    }
+
+    /**
+     * 记录critical日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function critical($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_CRITICAL
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::critical($message,$content,$module);
+    }
+
+    /**
+     * 记录alert日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function alert($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_ALERT
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::alert($message,$content,$module);
+    }
+
+    /**
+     * 记录emergency日志
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function emergency($message,array $content = array(),$module = '') {
+
+        #$level = SEASLOG_EMERGENCY
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::emergency($message,$content,$module);
+    }
+
+    /**
+     * 通用日志方法
+     * @param $level
+     * @param $message
+     * @param array $content
+     * @param string $module
+     */
+    static public function log($level,$message,array $content = array(),$module = '') {
+
+        $message = self::getIpUri().$message;
+        if($module !== ''){
+            $module = $_SERVER['SERVER_NAME'].'/'.$module;
+        }
+        \SeasLog::log($level,$message,$content,$module);
+    }
+
+}
+</code></pre>
+<h3 id="附">附</h3><p>@Neeke <a href="https://github.com/Neeke/SeasLog]" target="_blank" rel="external">https://github.com/Neeke/SeasLog</a></p>
+
       
     </div>
 
@@ -348,7 +592,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/笔记/" rel="tag">#笔记</a>
+            <a href="/tags/PHP日志拓展/" rel="tag">#PHP日志拓展</a>
           
         </div>
       
@@ -357,17 +601,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/18/git-项目上传步骤/" rel="next" title="git 项目上传步骤">
-                <i class="fa fa-chevron-left"></i> git 项目上传步骤
+              <a href="/2016/05/29/浅用GreenDao/" rel="next" title="浅用GreenDao">
+                <i class="fa fa-chevron-left"></i> 浅用GreenDao
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/29/浅用GreenDao/" rel="prev" title="浅用GreenDao">
-                浅用GreenDao <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -393,8 +633,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/12/Rxjava入门/"
-           data-title="Rxjava入门" data-url="http://walk-code.github.io/2016/04/12/Rxjava入门/">
+      <div class="ds-thread" data-thread-key="2016/07/24/SeasLog的基本使用/"
+           data-title="SeasLog的基本使用" data-url="http://walk-code.github.io/2016/07/24/SeasLog的基本使用/">
       </div>
     
   </div>
@@ -487,7 +727,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么要用RxJava"><span class="nav-number">1.</span> <span class="nav-text">1.为什么要用RxJava</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-什么是RxJava"><span class="nav-number">2.</span> <span class="nav-text">2.什么是RxJava</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SeasLog简介"><span class="nav-number">1.</span> <span class="nav-text">SeasLog简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用SeasLog"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用SeasLog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#附"><span class="nav-number">2.1.</span> <span class="nav-text">附</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
