@@ -486,11 +486,11 @@ class Logs
   </entry>
   
   <entry>
-    <title><![CDATA[Androidj传递对象的三种方式]]></title>
+    <title><![CDATA[Android传递对象的三种方式]]></title>
     <link href="http://walk-code.github.io/2015/11/10/Android%E4%BC%A0%E9%80%92%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
     <id>http://walk-code.github.io/2015/11/10/Android传递对象的三种方式/</id>
     <published>2015-11-10T14:52:15.000Z</published>
-    <updated>2016-05-08T07:51:13.070Z</updated>
+    <updated>2016-10-10T05:18:12.730Z</updated>
     <content type="html"><![CDATA[<p>在Android中，Activity和Fragment、Activity和Fragment之间传递对象，可以通过对象序列化存入Intent,Bundle进行传递，也可以通过将对象转化成Json字符串，进行传递。<br>对象的序列化也可以通过使用Java的’Serializable’的接口、’Parcelable’接口(Android)。转化成’Json字符串’，可以使用Gson的类库。<br><a id="more"></a></p>
 <h2 id="Serializable">Serializable</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Goods implements Serializable&#123;</span><br><span class="line">    private String images;</span><br><span class="line">	private String goods_name;</span><br><span class="line">	private double price;</span><br><span class="line">	private int stock;</span><br><span class="line">	private String details;</span><br><span class="line">	//setting&amp;getting method</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>传递数据</p>
