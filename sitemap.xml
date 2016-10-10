@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://walk-code.github.io/2016/05/29/%E6%B5%85%E7%94%A8GreenDao/</loc>
+    <lastmod>2016-10-10T07:58:12.567Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://walk-code.github.io/2016/10/10/%E6%B5%85%E7%94%A8Laravel-Dingo%E6%9E%84%E5%BB%BArestful-Api/</loc>
-    <lastmod>2016-10-10T07:47:10.944Z</lastmod>
+    <lastmod>2016-10-10T07:58:06.295Z</lastmod>
   </url>
   
   <url>
@@ -14,11 +19,6 @@
   <url>
     <loc>http://walk-code.github.io/2016/07/24/SeasLog%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2016-07-24T02:30:53.748Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://walk-code.github.io/2016/05/29/%E6%B5%85%E7%94%A8GreenDao/</loc>
-    <lastmod>2016-05-29T06:40:36.567Z</lastmod>
   </url>
   
   <url>

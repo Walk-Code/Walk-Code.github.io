@@ -4,7 +4,7 @@
   <subtitle><![CDATA[一份耕耘一份收获]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2016-10-10T07:47:10.944Z</updated>
+  <updated>2016-10-10T07:58:06.295Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[浅用Laravel-Dingo构建restful-Api]]></title>
+    <title><![CDATA[使用Laravel+Dingo构建restful-Api]]></title>
     <link href="http://walk-code.github.io/2016/10/10/%E6%B5%85%E7%94%A8Laravel-Dingo%E6%9E%84%E5%BB%BArestful-Api/"/>
     <id>http://walk-code.github.io/2016/10/10/浅用Laravel-Dingo构建restful-Api/</id>
     <published>2016-10-10T06:40:47.000Z</published>
-    <updated>2016-10-10T07:47:10.944Z</updated>
+    <updated>2016-10-10T07:58:06.295Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>最近一段时间在用php(第二好的语言)在折腾后台，从一开始”某人叫我必须要用thinkphp开发开始”一直的用TP来写接口,到后来我发现TP的的一些规范让我觉得恶心以外，更多的是用它来真的不好写restful风格的api，直到我遇见的<a href="https://github.com/dingo/api/wiki/Creating-API-Endpoints" target="_blank" rel="external">Dingo</a>+<a href="https://github.com/laravel/laravel" target="_blank" rel="external">laravel</a>这两个组合，大大的加快了开发的效率。Dingo提供了为我们提供了restful风格的api，自己可以制定返回参数，在wiki上都能找到，下面我是的项目目录结构：  </p>
 <h2 id="<!-_more_->"><a id="more"></a></h2><h3 id="1-概述">1.概述</h3><p><img src="http://ww1.sinaimg.cn/large/005yEbTbgw1f8ksv6hotzj306l04wgm0.jpg" alt="project structure"></p>
 <p>Controller这个文件夹就不需要多讲了，来看看Requests文件夹，里面主要是用来对前端传递过来的数据进行判断，自己根据自己的业务逻辑来制定判定的规则，一下面这张图来看:  </p>
@@ -339,11 +339,11 @@ class Logs
   </entry>
   
   <entry>
-    <title><![CDATA[浅用GreenDao]]></title>
+    <title><![CDATA[使用用GreenDao]]></title>
     <link href="http://walk-code.github.io/2016/05/29/%E6%B5%85%E7%94%A8GreenDao/"/>
     <id>http://walk-code.github.io/2016/05/29/浅用GreenDao/</id>
     <published>2016-05-29T04:41:43.000Z</published>
-    <updated>2016-05-29T06:40:36.567Z</updated>
+    <updated>2016-10-10T07:58:12.567Z</updated>
     <content type="html"><![CDATA[<h2 id="GreenDao官方简介">GreenDao官方简介</h2><p>greenDAO is an open source library for Android providing an easy to use interface to SQLite databases to help developers handle data efficiently – relieving developers from dealing with low-level database requirements while saving development time. SQLite is an awesome embedded relational database. Still, writing SQL and parsing query results are quite tedious and time-consuming tasks. greenDAO frees you from these by mapping Java objects to database tables (often called ORM). This way you can store, update, delete, and query for Java objects using a simple object oriented API.</p>
 <h2 id="<!-more_->"><a id="more"></a></h2><h3 id="GreenDao思维导图(关系映射(ORM))">GreenDao思维导图(关系映射(ORM))</h3><p><img src="http://ww4.sinaimg.cn/large/005yEbTbgw1f4c5vwqsoqj308w02k0su.jpg" alt="思维导图"></p>
 <h3 id="自动生成GreedDAO资源()">自动生成GreedDAO资源()</h3><p><img src="http://ww2.sinaimg.cn/large/005yEbTbgw1f4c67jcxjnj30hs08m400.jpg" alt="自动生成GreedDAO资源"></p>
