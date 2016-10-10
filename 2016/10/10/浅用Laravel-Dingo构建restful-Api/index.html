@@ -70,7 +70,7 @@
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/005yEbTbgw1f8kt9cwom6j30hg0ekdj7.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/005yEbTbgw1f8lygqowdvj30kd05pq3y.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/005yEbTbgw1f8n44jfv83j31120ksq4y.jpg">
-<meta property="og:updated_time" content="2016-10-10T06:44:07.098Z">
+<meta property="og:updated_time" content="2016-10-10T07:16:53.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅用Laravel-Dingo构建restful-Api">
 <meta name="twitter:description" content="前言最近一段时间在用php(第二好的语言)在折腾后台，从一开始”某人叫我必须要用thinkphp开发开始”一直的用TP来写接口,到后来我发现TP的的一些规范让我觉得恶心以外，更多的是用它来真的不好写restful风格的api，直到我遇见的Dingo+laravel这两个组合，大大的加快了开发的效率。Dingo提供了为我们提供了restful风格的api，自己可以制定返回参数，在wiki上都能找到，">
@@ -336,11 +336,11 @@
 <h4 id="3-设计思路">3.设计思路</h4><p>接口设计用户登录之后分配一个accessToken和一个refreshToken，accessToken用于发起用户请求，refreshToken用于更新accessToken。accessToken会设置有效期，可以设为24小时。而用户退出登录之后，accessToken和refreshToken都将作废。重新登录之后会分配新的accessToken和refreshToken。用户凭借着这个accessToken来向服务器请求资源。  </p>
 <h4 id="4-一些安全(未做)">4.一些安全(未做)</h4><p>现在大多数的网站都采用<a href="https://en.wikipedia.org/wiki/HTTPS" target="_blank" rel="external">HTTPS协议</a>,那就必须把HTTP协议升级到HTTP/2，<a href="http://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html" target="_blank" rel="external">阮一峰大大</a>，还有一些对安全性要求较高的数据，并未有做处理，mark<a href="http://keeganlee.me/post/practice/20160812" target="_blank" rel="external">API安全设计</a>  </p>
 <hr>
+<h3 id="总结">总结</h3><p>基本上就可以做一些简单的接口开发.</p>
+<hr>
 <h3 id="参考">参考</h3><p><em><a href="https://www.sitepoint.com/how-to-build-an-api-only-jwt-powered-laravel-app/" target="_blank" rel="external">blog</a>  
 </em><a href="https://www.alwayscoder.com/using-laravel-and-dingo-build-your-restful-api/" target="_blank" rel="external">alwayscoder-blog</a><br><em><a href="http://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html" target="_blank" rel="external">https</a>  
 </em><a href="https://github.com/layer7be/vue-starter-laravel-api" target="_blank" rel="external">laravel+dingo</a>  </p>
-<hr>
-<h3 id="总结">总结</h3><p>基本上就可以做一些简单的接口开发.</p>
 
       
     </div>
@@ -484,7 +484,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#<!-_more_->"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鉴权"><span class="nav-number">2.</span> <span class="nav-text">鉴权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">1.基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置"><span class="nav-number">2.2.</span> <span class="nav-text">2.配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-设计思路"><span class="nav-number">2.3.</span> <span class="nav-text">3.设计思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-一些安全(未做)"><span class="nav-number">2.4.</span> <span class="nav-text">4.一些安全(未做)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#<!-_more_->"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鉴权"><span class="nav-number">2.</span> <span class="nav-text">鉴权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">1.基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置"><span class="nav-number">2.2.</span> <span class="nav-text">2.配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-设计思路"><span class="nav-number">2.3.</span> <span class="nav-text">3.设计思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-一些安全(未做)"><span class="nav-number">2.4.</span> <span class="nav-text">4.一些安全(未做)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>
