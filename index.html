@@ -268,6 +268,342 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/26/php中ES的简单实用/" itemprop="url">
+                  php中ES的简单实用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-26T21:10:12+08:00" content="2017-04-26">
+              2017-04-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/26/php中ES的简单实用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/26/php中ES的简单实用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##前言<br>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>
+<hr>
+<p>##<a href="https://en.wikipedia.org/wiki/Elasticsearch" target="_blank" rel="external">什么是ES</a>  </p>
+<p>##基本配置  </p>
+<h3 id="1-须知">1.须知</h3><p>ES虽然也是创建索引，但是当你会发现他并不是通过索引来做搜索，搜索的是索引里面的已经设置好的一个个文档，并且提供了增删查改这几个方法来对document进行操作，很好的管理的的<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/document.html" target="_blank" rel="external">文档</a>。</p>
+<h3 id="2-下载客户端">2.下载客户端</h3><p>先从<a href="https://www.elastic.co/start" target="_blank" rel="external">官网下载</a>一个客户端，里面有个图像化管理索引的插件Kibana，这个安不安装都可以，下载好后解压修改一下config下的elasticsearch.yml文件，增加</p>
+<pre><code class="python">cluster.name: lgs-es
+node.name: node-<span class="number">1</span>
+</code></pre>
+<p><strong>切记一定要把插入这两段代码的时候前面不能有空格</strong>，最后启动成功后:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg" alt="image"><br>接着直接<a href="http://localhost:9200/" target="_blank" rel="external">http://localhost:9200/</a> 填上elastic and changeme 登录成功后，显示:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg" alt="image"><br>这样就算开启客户端成功。  </p>
+<p>##开始编码<br>作为一个强大的搜索引擎自然而然支持世界上最好的语言啦！<a href="https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html" target="_blank" rel="external">官方教程</a>,官网上有几个例子包括创建索引删除索引，对document的增删查改，对搜索结果分页等。  </p>
+<h3 id="1-创建索引">1.创建索引</h3><pre><code class="python">$hosts = [
+            'http://elastic:changeme@localhost:9200',
+        ];
+
+        $client = ClientBuilder::create()-&gt;setHosts($hosts)-&gt;allowBadJSONSerialization()-&gt;build();//初始化
+        $params = [
+            'index' =&gt; 'search_index',
+            'body' =&gt; [
+                'settings' =&gt; [
+                    'number_of_shards' =&gt; 3,
+                    'number_of_replicas' =&gt; 2
+                ],
+                'mappings' =&gt; [
+                    'fulltext' =&gt; [
+                        '_source' =&gt; [
+                            'enabled' =&gt; true
+                        ],
+                        'properties' =&gt; [
+                            'id' =&gt; [
+                                'type' =&gt; 'text',
+                                'analyzer' =&gt; 'ik_max_word'
+                            ],
+                            'title' =&gt; [
+                                'type' =&gt; 'text',
+                                'analyzer' =&gt; 'ik_max_word'                            
+                            ],
+                            'image' =&gt; [
+                                'type' =&gt; 'text',
+                                'analyzer' =&gt; 'ik_max_word'
+                            ],
+                            'keyword' =&gt; [
+                                'type' =&gt; 'text',
+                                'analyzer' =&gt; 'ik_max_word'
+                            ],
+                            'type' =&gt; [
+                                'type' =&gt; 'text',
+                                'analyzer' =&gt; 'ik_max_word'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $client-&gt;indices()-&gt;create($params);
+</code></pre>
+<p>这样就创建了一个索引还是挺简单的，ik_max_word是一个解析器，使用了<a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">ik</a>分词这个包,直接解压到更目录的plugins，重启ES就可以使用了。  </p>
+<h3 id="2-创建批量文档">2.创建批量文档</h3><pre><code class="python">$hosts = [
+        // This is effectively equal to: "https://username:password!#$?*abc@foo.com:9200/"
+        'http://elastic:changeme@localhost:9200',
+    ];
+
+    $client = ClientBuilder::create()-&gt;setHosts($hosts)-&gt;allowBadJSONSerialization()-&gt;build();//初始化
+
+    $posts = Activity::where('is_shelves',1)-&gt;orderBy('created_time','desc')-&gt;get();
+
+    $params = ['body' =&gt; []];
+
+    foreach ($posts as $k=&gt;$post) {
+
+        $params['body'][] = [
+            'index' =&gt; [
+                '_index' =&gt; 'search_index',
+                '_type' =&gt; 'fulltext',
+                '_id' =&gt; $post-&gt;id."activity"
+            ]
+        ];
+
+        $key_word = Keyword::where('type',1)-&gt;where('act_id',$post-&gt;id)-&gt;value('keyword');
+
+        $params['body'][] = [
+            'id' =&gt; $post-&gt;id,
+            'title' =&gt; $post-&gt;activity_name,
+            'image' =&gt; $post-&gt;hot_picture,
+            'keyword' =&gt; isset($key_word) ? $key_word : isset($post-&gt;tags-&gt;belongsto_cn) ? unserialize($post-&gt;tags-&gt;belongsto_cn)[0] : "",
+            'type' =&gt; 1
+        ];
+
+    }
+
+    return $client-&gt;bulk($params);
+</code></pre>
+<p>为了方便管理文档最好把Index的id换成数据的id值，方便以后的增删查改。  </p>
+<h3 id="3-搜索">3.搜索</h3><p>先通过’<a href="http://elastic:changeme@localhost:9200/_cat/indices?v&#39;检查的索引和文档是否创建成功，创建成功后，终于可以开始搜索：" target="_blank" rel="external">http://elastic:changeme@localhost:9200/_cat/indices?v&#39;检查的索引和文档是否创建成功，创建成功后，终于可以开始搜索：</a></p>
+<pre><code class="python">$hosts = [
+       // This is effectively equal to: "https://username:password!#$?*abc@foo.com:9200/"
+       'http://elastic:changeme@localhost:9200',
+   ];
+
+   $client = ClientBuilder::create()-&gt;setHosts($hosts)-&gt;allowBadJSONSerialization()-&gt;build();//初始化
+
+   $params = [
+       'index' =&gt; 'search_index',
+       'type' =&gt; 'fulltext',
+       'from' =&gt; empty($request-&gt;input('page',0) - 1) ? 0 : ($request-&gt;input('page',0) - 1) * 6,//显示第一条的偏移量
+       'size' =&gt; 6,
+       'body' =&gt; [
+           'query' =&gt; [
+               'bool' =&gt; [
+                   'should' =&gt; [
+                       ["match" =&gt; [ "id" =&gt; $search]],
+                       ["match" =&gt; [ "title" =&gt; $search]],
+                       ["match" =&gt; [ "image" =&gt; $search]],
+                       ["match" =&gt; [ "keyword" =&gt; $search]],
+                       ["match" =&gt; [ "type" =&gt; $search]],
+                   ],
+               ],
+
+           ],
+           "highlight" =&gt;[
+               "pre_tags" =&gt; ["&lt;tag1&gt;", "&lt;tag2&gt;"],
+               "post_tags" =&gt; ["&lt;/tag1&gt;", "&lt;/tag2&gt;"],
+               "fields" =&gt; [
+                   "title" =&gt; new \stdClass()
+               ]
+
+           ]
+       ]
+   ];
+
+   $files_search_data = [];
+   //return $client-&gt;indices()-&gt;getMapping(['index'=&gt;'activiyt2_index']);
+   //$search_result = $client-&gt;search($params)['hits']['hits'];
+   $response = $client-&gt;search($params);
+</code></pre>
+<p>这里用了’highlight’让搜索的结果高亮是为了检查中文分词是否成功。 ‘from’ 表示页码， ‘size’ 表示分页条数。上述的搜索结果:  </p>
+<p><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0fncq018j30nk0kw76e.jpg" alt=""><br>分词的结果也能显示出来，而且速度行。  </p>
+<p>##参考<br><a href="https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html" target="_blank" rel="external">ElasticSearch-PHP</a><br><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">ik分词</a>  </p>
+<p>##未完成  </p>
+<blockquote>
+<ul>
+<li>分布式搜索的搭建  </li>
+<li>代码的优化  </li>
+<li>用户搜索记录的保存</li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/11/后台开发的那些事/" itemprop="url">
+                  后台开发的那些事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-11T14:00:02+08:00" content="2016-10-11">
+              2016-10-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/11/后台开发的那些事/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/后台开发的那些事/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/10/浅用Laravel-Dingo构建restful-Api/" itemprop="url">
                   使用Laravel+Dingo构建restful-Api
                 </a>
@@ -989,7 +1325,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1045,7 +1381,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

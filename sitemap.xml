@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://walk-code.github.io/2017/04/26/php%E4%B8%ADES%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</loc>
+    <lastmod>2017-04-26T14:18:39.449Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://walk-code.github.io/2016/10/11/%E5%90%8E%E5%8F%B0%E5%BC%80%E5%8F%91%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/</loc>
+    <lastmod>2016-10-11T06:00:02.794Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://walk-code.github.io/2016/10/10/%E6%B5%85%E7%94%A8Laravel-Dingo%E6%9E%84%E5%BB%BArestful-Api/</loc>
     <lastmod>2016-10-11T01:03:56.214Z</lastmod>
   </url>
