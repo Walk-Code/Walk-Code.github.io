@@ -4,7 +4,7 @@
   <subtitle><![CDATA[一份耕耘一份收获]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2017-04-27T00:58:35.039Z</updated>
+  <updated>2017-04-27T05:45:32.401Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -19,12 +19,10 @@
     <link href="http://walk-code.github.io/2017/04/26/php%E4%B8%ADES%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/"/>
     <id>http://walk-code.github.io/2017/04/26/php中ES的简单实用/</id>
     <published>2017-04-26T13:10:12.000Z</published>
-    <updated>2017-04-27T00:58:35.039Z</updated>
-    <content type="html"><![CDATA[<p>##前言<br>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>
+    <updated>2017-04-27T05:45:32.401Z</updated>
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>
 <a id="more"></a> 
-<p>##<a href="https://en.wikipedia.org/wiki/Elasticsearch" target="_blank" rel="external">什么是ES</a>  </p>
-<p>##基本配置  </p>
-<h3 id="1-须知">1.须知</h3><p>ES虽然也是创建索引，但是当你会发现他并不是通过索引来做搜索，搜索的是索引里面的已经设置好的一个个文档，并且提供了增删查改这几个方法来对document进行操作，很好的管理的的<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/document.html" target="_blank" rel="external">文档</a>。</p>
+<h2 id="什么是ES"><a href="https://en.wikipedia.org/wiki/Elasticsearch" target="_blank" rel="external">什么是ES</a></h2><h2 id="基本配置">基本配置</h2><h3 id="1-须知">1.须知</h3><p>ES虽然也是创建索引，但是当你会发现他并不是通过索引来做搜索，搜索的是索引里面的已经设置好的一个个文档，并且提供了增删查改这几个方法来对document进行操作，很好的管理的的<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/document.html" target="_blank" rel="external">文档</a>。</p>
 <h3 id="2-下载客户端">2.下载客户端</h3><p>先从<a href="https://www.elastic.co/start" target="_blank" rel="external">官网下载</a>一个客户端，里面有个图像化管理索引的插件Kibana，这个安不安装都可以，下载好后解压修改一下config下的elasticsearch.yml文件，增加</p>
 <pre><code class="python">cluster.name: lgs-es
 node.name: node-<span class="number">1</span>
@@ -168,7 +166,7 @@ node.name: node-<span class="number">1</span>
 </blockquote>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>##前言<br>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>]]>
+    <![CDATA[<h2 id="前言">前言</h2><p>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>]]>
     
     </summary>
     

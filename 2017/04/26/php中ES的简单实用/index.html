@@ -59,19 +59,19 @@
 
 
 
-<meta name="description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
+<meta name="description" content="前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php中ES的简单实用">
 <meta property="og:url" content="http://walk-code.github.io/2017/04/26/php中ES的简单实用/index.html">
 <meta property="og:site_name" content="Goalkeeper">
-<meta property="og:description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
+<meta property="og:description" content="前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0fncq018j30nk0kw76e.jpg">
-<meta property="og:updated_time" content="2017-04-27T00:58:35.039Z">
+<meta property="og:updated_time" content="2017-04-27T05:45:32.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php中ES的简单实用">
-<meta name="twitter:description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
+<meta name="twitter:description" content="前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
 
 
 
@@ -315,11 +315,9 @@
       
 
       
-        <p>##前言<br>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>
+        <h2 id="前言">前言</h2><p>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>
 <a id="more"></a> 
-<p>##<a href="https://en.wikipedia.org/wiki/Elasticsearch" target="_blank" rel="external">什么是ES</a>  </p>
-<p>##基本配置  </p>
-<h3 id="1-须知">1.须知</h3><p>ES虽然也是创建索引，但是当你会发现他并不是通过索引来做搜索，搜索的是索引里面的已经设置好的一个个文档，并且提供了增删查改这几个方法来对document进行操作，很好的管理的的<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/document.html" target="_blank" rel="external">文档</a>。</p>
+<h2 id="什么是ES"><a href="https://en.wikipedia.org/wiki/Elasticsearch" target="_blank" rel="external">什么是ES</a></h2><h2 id="基本配置">基本配置</h2><h3 id="1-须知">1.须知</h3><p>ES虽然也是创建索引，但是当你会发现他并不是通过索引来做搜索，搜索的是索引里面的已经设置好的一个个文档，并且提供了增删查改这几个方法来对document进行操作，很好的管理的的<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/document.html" target="_blank" rel="external">文档</a>。</p>
 <h3 id="2-下载客户端">2.下载客户端</h3><p>先从<a href="https://www.elastic.co/start" target="_blank" rel="external">官网下载</a>一个客户端，里面有个图像化管理索引的插件Kibana，这个安不安装都可以，下载好后解压修改一下config下的elasticsearch.yml文件，增加</p>
 <pre><code class="python">cluster.name: lgs-es
 node.name: node-<span class="number">1</span>
@@ -604,7 +602,7 @@ node.name: node-<span class="number">1</span>
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-须知"><span class="nav-number">1.</span> <span class="nav-text">1.须知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载客户端"><span class="nav-number">2.</span> <span class="nav-text">2.下载客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建索引"><span class="nav-number">3.</span> <span class="nav-text">1.创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建批量文档"><span class="nav-number">4.</span> <span class="nav-text">2.创建批量文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-搜索"><span class="nav-number">5.</span> <span class="nav-text">3.搜索</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是ES"><span class="nav-number">2.</span> <span class="nav-text">什么是ES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本配置"><span class="nav-number">3.</span> <span class="nav-text">基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-须知"><span class="nav-number">3.1.</span> <span class="nav-text">1.须知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载客户端"><span class="nav-number">3.2.</span> <span class="nav-text">2.下载客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建索引"><span class="nav-number">3.3.</span> <span class="nav-text">1.创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建批量文档"><span class="nav-number">3.4.</span> <span class="nav-text">2.创建批量文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-搜索"><span class="nav-number">3.5.</span> <span class="nav-text">3.搜索</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
