@@ -59,31 +59,19 @@
 
 
 
-<meta name="description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  
-
-##什么是ES  
-##基本配置  
-1.须知ES虽然也是创建索引，但是当你会发现他并不是通过索引来">
+<meta name="description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php中ES的简单实用">
 <meta property="og:url" content="http://walk-code.github.io/2017/04/26/php中ES的简单实用/index.html">
 <meta property="og:site_name" content="Goalkeeper">
-<meta property="og:description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  
-
-##什么是ES  
-##基本配置  
-1.须知ES虽然也是创建索引，但是当你会发现他并不是通过索引来">
+<meta property="og:description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0fncq018j30nk0kw76e.jpg">
-<meta property="og:updated_time" content="2017-04-26T14:18:39.449Z">
+<meta property="og:updated_time" content="2017-04-27T00:58:35.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php中ES的简单实用">
-<meta name="twitter:description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  
-
-##什么是ES  
-##基本配置  
-1.须知ES虽然也是创建索引，但是当你会发现他并不是通过索引来">
+<meta name="twitter:description" content="##前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
 
 
 
@@ -328,7 +316,7 @@
 
       
         <p>##前言<br>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>
-<hr>
+<a id="more"></a> 
 <p>##<a href="https://en.wikipedia.org/wiki/Elasticsearch" target="_blank" rel="external">什么是ES</a>  </p>
 <p>##基本配置  </p>
 <h3 id="1-须知">1.须知</h3><p>ES虽然也是创建索引，但是当你会发现他并不是通过索引来做搜索，搜索的是索引里面的已经设置好的一个个文档，并且提供了增删查改这几个方法来对document进行操作，很好的管理的的<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/document.html" target="_blank" rel="external">文档</a>。</p>
