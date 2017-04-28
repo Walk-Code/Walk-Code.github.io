@@ -68,7 +68,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0fncq018j30nk0kw76e.jpg">
-<meta property="og:updated_time" content="2017-04-28T10:49:04.828Z">
+<meta property="og:updated_time" content="2017-04-28T10:58:32.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php中ES的简单使用">
 <meta name="twitter:description" content="前言之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。">
@@ -322,7 +322,7 @@
 <pre><code class="python">cluster.name: lgs-es
 node.name: node-<span class="number">1</span>
 </code></pre>
-<p><strong>切记一定要把插入这两段代码的时候前面不能有空格</strong>，最后启动成功后:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg" alt="image"><br>接着直接<a href="http://localhost:9200/" target="_blank" rel="external">http://localhost:9200/</a> 填上elastic and changeme 登录成功后，显示:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg" alt="image"><br>这样就算开启客户端成功。  </p>
+<p> ‘切记一定要把插入这两段代码的时候前面不能有空格’ ，最后启动成功后:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg" alt="image"><br>接着直接<a href="http://localhost:9200/" target="_blank" rel="external">http://localhost:9200/</a> 填上elastic and changeme 登录成功后，显示:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg" alt="image"><br>这样就算开启客户端成功。  </p>
 <p>##开始编码<br>作为一个强大的搜索引擎自然而然支持世界上最好的语言啦！<a href="https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html" target="_blank" rel="external">官方教程</a>,官网上有几个例子包括创建索引删除索引，对document的增删查改，对搜索结果分页等。  </p>
 <h3 id="1-创建索引">1.创建索引</h3><pre><code class="python">$hosts = [
             'http://elastic:changeme@localhost:9200',

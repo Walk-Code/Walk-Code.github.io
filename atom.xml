@@ -4,7 +4,7 @@
   <subtitle><![CDATA[一份耕耘一份收获]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2017-04-28T10:49:04.828Z</updated>
+  <updated>2017-04-28T10:58:32.719Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://walk-code.github.io/2017/04/26/php%E4%B8%ADES%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/"/>
     <id>http://walk-code.github.io/2017/04/26/php中ES的简单实用/</id>
     <published>2017-04-26T13:10:12.000Z</published>
-    <updated>2017-04-28T10:49:04.828Z</updated>
+    <updated>2017-04-28T10:58:32.719Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>之所以要使用ElasticSearch，也是因为业务需求吧，那搜索来说吧！当数据量多或者少的时候总是会伴随的搜索结果呈现的问题，数据库仅仅同like的关键字能帮我们解决小部分的数据查询问题，<br>当然也可以做索引，然后通过索引来找到对应的数据，但是这个工作量就有点大，最重要就是TM的麻烦。  </p>
 <a id="more"></a> 
 <h2 id="什么是ES"><a href="https://en.wikipedia.org/wiki/Elasticsearch" target="_blank" rel="external">什么是ES</a></h2><h2 id="基本配置">基本配置</h2><h3 id="1-须知">1.须知</h3><p>ES虽然也是创建索引，但是当你会发现他并不是通过索引来做搜索，搜索的是索引里面的已经设置好的一个个文档，并且提供了增删查改这几个方法来对document进行操作，很好的管理的的<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/document.html" target="_blank" rel="external">文档</a>。</p>
@@ -27,7 +27,7 @@
 <pre><code class="python">cluster.name: lgs-es
 node.name: node-<span class="number">1</span>
 </code></pre>
-<p><strong>切记一定要把插入这两段代码的时候前面不能有空格</strong>，最后启动成功后:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg" alt="image"><br>接着直接<a href="http://localhost:9200/" target="_blank" rel="external">http://localhost:9200/</a> 填上elastic and changeme 登录成功后，显示:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg" alt="image"><br>这样就算开启客户端成功。  </p>
+<p> ‘切记一定要把插入这两段代码的时候前面不能有空格’ ，最后启动成功后:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0enkggafj30dw093aa7.jpg" alt="image"><br>接着直接<a href="http://localhost:9200/" target="_blank" rel="external">http://localhost:9200/</a> 填上elastic and changeme 登录成功后，显示:<br><img src="http://ww1.sinaimg.cn/large/005yEbTbgy1ff0eqsylf6j309905uq2r.jpg" alt="image"><br>这样就算开启客户端成功。  </p>
 <p>##开始编码<br>作为一个强大的搜索引擎自然而然支持世界上最好的语言啦！<a href="https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html" target="_blank" rel="external">官方教程</a>,官网上有几个例子包括创建索引删除索引，对document的增删查改，对搜索结果分页等。  </p>
 <h3 id="1-创建索引">1.创建索引</h3><pre><code class="python">$hosts = [
             'http://elastic:changeme@localhost:9200',
