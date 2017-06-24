@@ -282,7 +282,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-24T21:49:40+08:00" content="2017-06-24">
+            <time itemprop="dateCreated" datetime="2017-06-24T21:54:56+08:00" content="2017-06-24">
               2017-06-24
             </time>
           </span>
@@ -317,82 +317,17 @@
 
       
         
-          
-            <p>title: （转）CSS五种方式实现Footer置底<br>date: 2017-06-24 12:02:42</p>
-<h2 id="tags:">tags:</h2><h2 id="前言">前言</h2><pre><code>最近在写前端时，当内容的高度足够高时，Footer总能置底，当内容高度不够高时，Footer总是会漂，不能置底无奈之下只能找解决方案。于是就有了这篇文章-.-~，完美的解决了我的囧境。yong
-
-&gt; 引用一段原话:The purpose <span class="keyword">of</span> a sticky footer <span class="keyword">is</span> <span class="literal">that</span> <span class="literal">it</span> <span class="string">"sticks"</span> <span class="keyword">to</span> the bottom <span class="keyword">of</span> the browser <span class="built_in">window</span>. But <span class="keyword">not</span> always, <span class="keyword">if</span> there <span class="keyword">is</span> enough content <span class="literal">on</span> the page <span class="keyword">to</span> push the footer lower, <span class="literal">it</span> still does <span class="literal">that</span>. But <span class="keyword">if</span> the content <span class="literal">on</span> the page <span class="keyword">is</span> short, a sticky footer will still hang <span class="keyword">to</span> the bottom <span class="keyword">of</span> the browser <span class="built_in">window</span>.  
-
-------  
-
-!(image)[<span class="attribute">https</span>:<span class="pi">//cdn.css-tricks.com/wp-content/uploads/2016/05/sticky-footer-1.svg]  
-
-------  </span>
-</code></pre><h2 id="第一种方式">第一种方式</h2><pre><code>通过设置margin-bottom为负的底部边距，但是需要设置一个占位元素高度等于Footer的高度。  
-Html:  
-<span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">		&lt;body&gt;</span><br><span class="line">  			&lt;div class="wrapper"&gt;</span><br><span class="line"></span><br><span class="line">      		content</span><br><span class="line"></span><br><span class="line">    		&lt;div class="push"&gt;&lt;/div&gt;</span><br><span class="line">  			&lt;/div&gt;</span><br><span class="line">  			&lt;footer class="footer"&gt;&lt;/footer&gt;</span><br><span class="line">		&lt;/body&gt;</span><br><span class="line">	```  </span><br><span class="line"></span><br><span class="line">	Css:  </span><br><span class="line">	```python  </span><br><span class="line">		html, body &#123;</span><br><span class="line">		  height: 100%;</span><br><span class="line">		  margin: 0;</span><br><span class="line">		&#125;</span><br><span class="line">		.wrapper &#123;</span><br><span class="line">		  min-height: 100%;</span><br><span class="line"></span><br><span class="line">		  /* Equal to height of footer */</span><br><span class="line">		  /* But also accounting for potential margin-bottom of last child */</span><br><span class="line">		  margin-bottom: -50px;</span><br><span class="line">		&#125;</span><br><span class="line">		.footer,</span><br><span class="line">		.push &#123;</span><br><span class="line">		  height: 50px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	```  </span><br><span class="line">	### [Example](https://codepen.io/chriscoyier/pen/VjZmGj)  </span><br><span class="line"></span><br><span class="line">## 第二种方式  </span><br><span class="line">	通过设置Footer的margain-top为负数，这种方式需要在内容层的最外层在套一层元素，内部的margain-bottom的高度要与Footer的高度一致。  </span><br><span class="line">	Html:  </span><br><span class="line">	```python</span><br><span class="line">		&lt;body&gt;</span><br><span class="line">  			&lt;div class="content"&gt;</span><br><span class="line">    			&lt;div class="content-inside"&gt;</span><br><span class="line">      			content</span><br><span class="line">    			&lt;/div&gt;</span><br><span class="line">  			&lt;/div&gt;</span><br><span class="line">  			&lt;footer class="footer"&gt;&lt;/footer&gt;</span><br><span class="line">		&lt;/body&gt;</span><br><span class="line">	```  </span><br><span class="line"></span><br><span class="line">	Css:  </span><br><span class="line">	```python</span><br><span class="line">		html, body &#123;</span><br><span class="line">  			height: 100%;</span><br><span class="line">  			margin: 0;</span><br><span class="line">		&#125;	</span><br><span class="line">		.content &#123;</span><br><span class="line">		  min-height: 100%;</span><br><span class="line">		&#125;</span><br><span class="line">		.content-inside &#123;</span><br><span class="line">		  padding: 20px;</span><br><span class="line">		  padding-bottom: 50px;</span><br><span class="line">		&#125;</span><br><span class="line">		.footer &#123;</span><br><span class="line">		  height: 50px;</span><br><span class="line">		  margin-top: -50px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	```  </span><br><span class="line">	### [Example](https://codepen.io/chriscoyier/pen/aZoBMb)  </span><br><span class="line"></span><br><span class="line">## 第三种方式  </span><br><span class="line">	通过calc()计算函数来设置内容高度(不需要嵌套任何元素)  </span><br><span class="line">	Html:  </span><br><span class="line">	```python  </span><br><span class="line">		&lt;body&gt;</span><br><span class="line">		 	&lt;div class="content"&gt;</span><br><span class="line">	 		content</span><br><span class="line">		 	&lt;/div&gt;</span><br><span class="line">		 	&lt;footer class="footer"&gt;&lt;/footer&gt;</span><br><span class="line">		&lt;/body&gt;</span><br><span class="line">	```  </span><br><span class="line"></span><br><span class="line">	Css:  </span><br><span class="line">	```python</span><br><span class="line">		.content&#123;</span><br><span class="line">			min-height:calc(100vh - 70px);</span><br><span class="line">		&#125;</span><br><span class="line">		.footer&#123;</span><br><span class="line">			height:50px</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure></span>
-
-&gt; 注意calc（）中的70px与页脚的50px固定高度。这是一个假设。假设内容中的最后一个项目的底边距为20px。这是底边加上需要添加在一起以从视口高度减去的页脚的高度。是的，我们在这里使用视口单位作为另一个小技巧，避免在设置100％的身高之前设置100％的包装高度。  
-
-### [Example](https://codepen.io/chriscoyier/pen/jqRXBz)  
-</code></pre><h2 id="第四种方式">第四种方式</h2><pre><code>使用flexbox,上述三种方式的大问题是需要固定的高度页脚。固定高度通常是网页设计中的一大障碍。内容可以改变 事情是灵活的 固定高度通常是红旗领土。对粘性页脚使用[<span class="link_label">flexbox</span>](<span class="link_url">https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/</span>)不仅不需要任何额外的元素，还可以允许一个可变的高度页脚。  
-Html:  
-<span class="code">```</span>python
-<span class="code">    &lt;body&gt;</span>
-<span class="code">        &lt;div class="content"&gt;</span>
-<span class="code">        content</span>
-<span class="code">        &lt;/div&gt;</span>
-<span class="code">        &lt;footer class="footer"&gt;</span>
-<span class="code">        &lt;/footer&gt;</span>
-<span class="code">    &lt;/body&gt;</span>
-<span class="code">```</span>  
-
-Css:  
-<span class="code">```</span>python  
-<span class="code">    html,body{</span>
-<span class="code">        height:100%;</span>
-<span class="code">    }</span>
-<span class="code">    body{</span>
-<span class="code">        display:flex;</span>
-<span class="code">        flex-direction:column;</span>
-<span class="code">    }</span>
-<span class="code">    .content{</span>
-<span class="code">        flex:1 0 auto</span>
-<span class="code">    }</span>
-<span class="code">```</span>  
-<span class="header">### [Example](https://codepen.io/chriscoyier/pen/RRbKrL)  </span>
-</code></pre><h2 id="第五种方式">第五种方式</h2><pre><code>通过使用<span class="tag">Grid</span>网格布局，网格布局比<span class="tag">flexbox</span> 更新（并且不太受支持）。我们也有一个完整的<span class="attr_selector">[指南]</span>(<span class="rule"><span class="attribute">https</span>:<span class="value">//css-tricks.com/snippets/css/complete-guide-grid/)。你也可以很容易地使用它来粘贴页脚。  
-Html:  
-```python
-    &lt;body&gt;
-          &lt;div class=<span class="string">"content"</span>&gt;
-        content
-           &lt;/div&gt;
-          &lt;footer class=<span class="string">"footer"</span>&gt;&lt;/footer&gt;
-    &lt;/body&gt;
-```  
-
-Css:  
-```python  
-    html {
-          height: <span class="number">100%</span></span></span>;
-        }
-    <span class="tag">body</span> <span class="rules">{
-      <span class="rule"><span class="attribute">min-height</span>:<span class="value"> <span class="number">100%</span></span></span>;
-      <span class="rule"><span class="attribute">display</span>:<span class="value"> grid</span></span>;
-      <span class="rule"><span class="attribute">grid-template-rows</span>:<span class="value"> <span class="number">1</span>fr auto</span></span>;
-    }</span>
-    <span class="class">.footer</span> <span class="rules">{
-      <span class="rule"><span class="attribute">grid-row-start</span>:<span class="value"> <span class="number">2</span></span></span>;
-      <span class="rule"><span class="attribute">grid-row-end</span>:<span class="value"> <span class="number">3</span></span></span>;
-    }</span>
-```  
-### <span class="attr_selector">[Example]</span>(<span class="rule"><span class="attribute">https</span>:<span class="value">//codepen.io/chriscoyier/pen/YWKNrE)  </span></span>
-</code></pre><h2 id="总结">总结</h2><pre><code>&gt; * <span class="attr_selector">[传送门]</span>(<span class="rule"><span class="attribute">https</span>:<span class="value">//css-tricks.com/couple-takes-sticky-footer/)  
-
-这段时间在写前端的时，一直以为Footer很简单(毕竟随处可见)，但是做起来真的没有这么简单，记一下。</span></span>
-</code></pre>
-          
+          <p>title: （转）CSS五种方式实现Footer置底<br>date: 2017-06-24 12:02:42</p>
+<h2 id="tags:">tags:</h2><h2 id="前言">前言</h2><p>最近在写前端时，当内容的高度足够高时，Footer总能置底，当内容高度不够高时，Footer总是会漂，不能置底无奈之下只能找解决方案。于是就有了这篇文章-.-~，完美的解决了我的囧境。yong</p>
+<blockquote>
+<p>引用一段原话:The purpose of a sticky footer is that it “sticks” to the bottom of the browser window. But not always, if there is enough content on the page to push the footer lower, it still does that. But if the content on the page is short, a sticky footer will still hang to the bottom of the browser window.  </p>
+</blockquote>
+<h2 id="<!-_more_->">
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/06/24/（转）CSS五种方式实现Footer置底/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
