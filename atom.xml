@@ -4,7 +4,7 @@
   <subtitle><![CDATA[一份耕耘一份收获]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2017-06-24T14:20:59.613Z</updated>
+  <updated>2017-06-24T14:26:51.835Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -13,6 +13,19 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[test]]></title>
+    <link href="http://walk-code.github.io/2017/06/24/test/"/>
+    <id>http://walk-code.github.io/2017/06/24/test/</id>
+    <published>2017-06-24T14:26:51.000Z</published>
+    <updated>2017-06-24T14:26:51.835Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title></title>
