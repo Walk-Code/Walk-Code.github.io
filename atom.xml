@@ -4,7 +4,7 @@
   <subtitle><![CDATA[一份耕耘一份收获]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2017-06-24T14:09:13.203Z</updated>
+  <updated>2017-06-24T14:15:32.507Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -18,9 +18,9 @@
     <title></title>
     <link href="http://walk-code.github.io/2017/06/24/%EF%BC%88%E8%BD%AC%EF%BC%89CSS%E4%BA%94%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0Footer%E7%BD%AE%E5%BA%95/"/>
     <id>http://walk-code.github.io/2017/06/24/（转）CSS五种方式实现Footer置底/</id>
-    <published>2017-06-24T14:09:13.203Z</published>
-    <updated>2017-06-24T14:09:13.203Z</updated>
-    <content type="html"><![CDATA[<p>title: （转）CSS五种方式实现Footer置底<br>date: 2017-06-24 22:03:44</p>
+    <published>2017-06-24T14:15:32.507Z</published>
+    <updated>2017-06-24T14:15:32.507Z</updated>
+    <content type="html"><![CDATA[<p>title: CSS五种方式实现Footer置底（转）<br>date: 2017-06-24 22:03:44</p>
 <h2 id="tags:_笔记">tags: 笔记</h2><h2 id="前言">前言</h2><p>最近在写前端时，当内容的高度足够高时，Footer总能置底，当内容高度不够高时，Footer总是会漂，不能置底无奈之下只能找解决方案。于是就有了这篇文章-.-~，完美的解决了我的囧境。yong</p>
 <blockquote>
 <p>引用一段原话:The purpose of a sticky footer is that it “sticks” to the bottom of the browser window. But not always, if there is enough content on the page to push the footer lower, it still does that. But if the content on the page is short, a sticky footer will still hang to the bottom of the browser window.  </p>
@@ -85,7 +85,7 @@ body {
 <p>这段时间在写前端的时，一直以为Footer很简单(毕竟随处可见)，但是做起来真的没有这么简单，记一下。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>title: （转）CSS五种方式实现Footer置底<br>date: 2017-06-24 22:03:44</p>
+    <![CDATA[<p>title: CSS五种方式实现Footer置底（转）<br>date: 2017-06-24 22:03:44</p>
 <h2 id="tags:_笔记">tags: 笔记</h2><h2 id="前言">前言</h2><p>最近在写前端时，当内容的高度足够高时，Footer总能置底，当内容高度不够高时，Footer总是会漂，不能置底无奈之下只能找解决方案。于是就有了这篇文章-.-~，完美的解决了我的囧境。yong</p>
 <blockquote>
 <p>引用一段原话:The purpose of a sticky footer is that it “sticks” to the bottom of the browser window. But not always, if there is enough content on the page to push the footer lower, it still does that. But if the content on the page is short, a sticky footer will still hang to the bottom of the browser window.  </p>
