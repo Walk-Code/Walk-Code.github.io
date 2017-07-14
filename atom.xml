@@ -4,7 +4,7 @@
   <subtitle><![CDATA[一份耕耘一份收获]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2017-06-24T14:45:16.293Z</updated>
+  <updated>2017-07-14T10:03:03.586Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -13,6 +13,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[使用acme.sh申请letsencrypt证书，配置nginx的一次经历]]></title>
+    <link href="http://walk-code.github.io/2017/07/14/%E4%BD%BF%E7%94%A8acme-sh%E7%94%B3%E8%AF%B7letsencrypt%E8%AF%81%E4%B9%A6/"/>
+    <id>http://walk-code.github.io/2017/07/14/使用acme-sh申请letsencrypt证书/</id>
+    <published>2017-07-14T08:54:33.000Z</published>
+    <updated>2017-07-14T10:03:03.586Z</updated>
+    <content type="html"><![CDATA[<h2 id="申请并安装证书">申请并安装证书</h2><p>在折腾自己的项目的时候，恰巧有个吃灰的域名和服务器，那就搞点东西-。-~。  </p>
+<blockquote>
+<p>acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书。  </p>
+</blockquote>
+<p>详细步骤可以到<a href="https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E" target="_blank" rel="external">acme.sh</a>中查看详细操作步骤，照着文档很快就能申请好证书，并安装好证书。  </p>
+<h2 id="配置http">配置http</h2><p>在nginx.conf的文件中能看到<code>include/etc/nginx/conf.d/*.conf</code>,<code>include /etc/nginx/sites-enabled/*</code>,解析域名的配置文件是在sites-enabled目录下，在apache中也可以指向读取配置文件的位置，<code>Include conf/extra/httpd-vhosts.conf</code> 在编辑<code>/extra/httpd-vhosts.conf</code>添加<code>conf/vhosts/*.conf</code>指向vhosts下的所有的<code>.conf</code>文件。nginx在<code>sites-enabled</code>下有个default.conf的模板，apache在<code>vhosts</code>下也有一个这样的文件，照着配置基本就能完成。现在就可以通过域名来访问你的服务器。  </p>
+<h2 id="配置https">配置https</h2><p>apache配置https和nginx配置https区别，在nginx下可以直接在当前的配置文件中添加一个新的server用来管理443端口，配置好证书的访问路径如下：<br>nginx下配置:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">	listen 443 ssl;</span><br><span class="line">    server_name 域名;</span><br><span class="line">    ssl_certificate 证书位置;</span><br><span class="line">    ssl_certificate_key  证书秘钥;</span><br><span class="line">    root 项目访问路径;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/g.access.log;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">		...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line">基本的配置好然后修改`.conf`文件，在80端的那个server中添加中定向代码`return 301 https://$server_name$request_uri;`，重启一下nginx服务器，这样基本就能ok。</span><br><span class="line"></span><br><span class="line">编辑`conf/extra/httpd-ssl.conf`你能发现这里又有一个`&lt;VirtualHost _default_:443&gt;`的标签,这里就是配置https的地方，apache配置https它也给出了默认的配置，照着配置就行了。  </span><br><span class="line">apache下的配置:  </span><br><span class="line">```python</span><br><span class="line">	&lt;VirtualHost _default_:443&gt;</span><br><span class="line">	DocumentRoot 项目访问路径</span><br><span class="line">	ServerName 域名:443</span><br><span class="line">	ErrorLog 错误日志存放路径</span><br><span class="line">	TransferLog 访问日志存放路径</span><br><span class="line">	SSLCertificateFile 证书存放路径</span><br><span class="line">	SSLCertificateKeyFile 证书密钥存放路径</span><br><span class="line"></span><br><span class="line">	&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p>同样修改<code>.conf</code>文件，在apache中使用https需要打开Rewrite，添加<code>RewriteEngine On</code> <code>RewriteCond %{HTTPS} !on</code> <code>RewriteRule (.*) https://%{HTTP_HOST}%{http://wx.tpmission.com/}$1</code> 然后重启一下apache服务器，输入域名，就能看见小绿锁了。  </p>
+<h2 id="总结">总结</h2><p>有时候能找的一些好用的脚本，真的能高效的提高自己的工作效率。配置还是挺简单的，还有一些更加高级的用法，还需要在以后的日子里面慢慢的学习和使用，nginx的访问速度真没话说(<em>^__^</em>) 嘻嘻……  </p>
+<blockquote>
+<p>文中有什么错误的地方，请指出谢谢。</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="申请并安装证书">申请并安装证书</h2><p>在折腾自己的项目的时候，恰巧有个吃灰的域名和服务器，那就搞点东西-。-~。  </p>
+<blockquote>
+<p>acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书。  <]]>
+    </summary>
+    
+      <category term="证书" scheme="http://walk-code.github.io/tags/%E8%AF%81%E4%B9%A6/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[CSS五种方式实现Footer置底(转)]]></title>

@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="证书," />
 
 
 
@@ -59,21 +59,31 @@
 
 
 
-<meta name="description" content="前言最近一段时间在用php(第二好的语言)在折腾后台，从一开始”某人叫我必须要用thinkphp开发开始”一直的用TP来写接口,到后来我发现TP的的一些规范让我觉得恶心以外，更多的是用它来真的不好写restful风格的api，直到我遇见的Dingo+laravel这两个组合，大大的加快了开发的效率。Dingo提供了为我们提供了restful风格的api，自己可以制定返回参数，在wiki上都能找到，">
+<meta name="description" content="申请并安装证书在折腾自己的项目的时候，恰巧有个吃灰的域名和服务器，那就搞点东西-。-~。  
+
+acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书。  
+
+详细步骤可以到acme.sh中查看详细操作步骤，照着文档很快就能申请好证书，并安装好证书。  
+配置http在nginx.conf的文件中能看到include/etc/nginx/conf.d/*.conf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Laravel+Dingo构建restful-Api">
-<meta property="og:url" content="http://walk-code.github.io/2016/10/10/浅用Laravel-Dingo构建restful-Api/index.html">
+<meta property="og:title" content="使用acme.sh申请letsencrypt证书，配置nginx的一次经历">
+<meta property="og:url" content="http://walk-code.github.io/2017/07/14/使用acme-sh申请letsencrypt证书/index.html">
 <meta property="og:site_name" content="Goalkeeper">
-<meta property="og:description" content="前言最近一段时间在用php(第二好的语言)在折腾后台，从一开始”某人叫我必须要用thinkphp开发开始”一直的用TP来写接口,到后来我发现TP的的一些规范让我觉得恶心以外，更多的是用它来真的不好写restful风格的api，直到我遇见的Dingo+laravel这两个组合，大大的加快了开发的效率。Dingo提供了为我们提供了restful风格的api，自己可以制定返回参数，在wiki上都能找到，">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgw1f8ksv6hotzj306l04wgm0.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005yEbTbgw1f8kt08ob54j30bh08sjrw.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005yEbTbgw1f8kt9cwom6j30hg0ekdj7.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/005yEbTbgw1f8lygqowdvj30kd05pq3y.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/005yEbTbgw1f8n44jfv83j31120ksq4y.jpg">
-<meta property="og:updated_time" content="2016-10-11T01:03:56.214Z">
+<meta property="og:description" content="申请并安装证书在折腾自己的项目的时候，恰巧有个吃灰的域名和服务器，那就搞点东西-。-~。  
+
+acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书。  
+
+详细步骤可以到acme.sh中查看详细操作步骤，照着文档很快就能申请好证书，并安装好证书。  
+配置http在nginx.conf的文件中能看到include/etc/nginx/conf.d/*.conf">
+<meta property="og:updated_time" content="2017-07-14T10:03:03.586Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Laravel+Dingo构建restful-Api">
-<meta name="twitter:description" content="前言最近一段时间在用php(第二好的语言)在折腾后台，从一开始”某人叫我必须要用thinkphp开发开始”一直的用TP来写接口,到后来我发现TP的的一些规范让我觉得恶心以外，更多的是用它来真的不好写restful风格的api，直到我遇见的Dingo+laravel这两个组合，大大的加快了开发的效率。Dingo提供了为我们提供了restful风格的api，自己可以制定返回参数，在wiki上都能找到，">
+<meta name="twitter:title" content="使用acme.sh申请letsencrypt证书，配置nginx的一次经历">
+<meta name="twitter:description" content="申请并安装证书在折腾自己的项目的时候，恰巧有个吃灰的域名和服务器，那就搞点东西-。-~。  
+
+acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书。  
+
+详细步骤可以到acme.sh中查看详细操作步骤，照着文档很快就能申请好证书，并安装好证书。  
+配置http在nginx.conf的文件中能看到include/etc/nginx/conf.d/*.conf">
 
 
 
@@ -91,7 +101,7 @@
   };
 </script>
 
-  <title> 使用Laravel+Dingo构建restful-Api | Goalkeeper </title>
+  <title> 使用acme.sh申请letsencrypt证书，配置nginx的一次经历 | Goalkeeper </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -271,7 +281,7 @@
             
             
               
-                使用Laravel+Dingo构建restful-Api
+                使用acme.sh申请letsencrypt证书，配置nginx的一次经历
               
             
           </h1>
@@ -283,8 +293,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T14:40:47+08:00" content="2016-10-10">
-              2016-10-10
+            <time itemprop="dateCreated" datetime="2017-07-14T16:54:33+08:00" content="2017-07-14">
+              2017-07-14
             </time>
           </span>
 
@@ -294,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/10/浅用Laravel-Dingo构建restful-Api/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/浅用Laravel-Dingo构建restful-Api/" itemprop="commentsCount"></span>
+                <a href="/2017/07/14/使用acme-sh申请letsencrypt证书/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/14/使用acme-sh申请letsencrypt证书/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -317,34 +327,18 @@
       
 
       
-        <h2 id="前言">前言</h2><p>最近一段时间在用php(第二好的语言)在折腾后台，从一开始”某人叫我必须要用thinkphp开发开始”一直的用TP来写接口,到后来我发现TP的的一些规范让我觉得恶心以外，更多的是用它来真的不好写restful风格的api，直到我遇见的<a href="https://github.com/dingo/api/wiki/Creating-API-Endpoints" target="_blank" rel="external">Dingo</a>+<a href="https://github.com/laravel/laravel" target="_blank" rel="external">laravel</a>这两个组合，大大的加快了开发的效率。Dingo提供了为我们提供了restful风格的api，自己可以制定返回参数，在wiki上都能找到，下面我是的项目目录结构：<br><a id="more"></a>  </p>
-<hr>
-<h2 id="概述">概述</h2><p><img src="http://ww1.sinaimg.cn/large/005yEbTbgw1f8ksv6hotzj306l04wgm0.jpg" alt="project structure"></p>
-<p>Controller这个文件夹就不需要多讲了，来看看Requests文件夹，里面主要是用来对前端传递过来的数据进行判断，自己根据自己的业务逻辑来制定判定的规则，一下面这张图来看:  </p>
-<p><img src="http://ww1.sinaimg.cn/large/005yEbTbgw1f8kt08ob54j30bh08sjrw.jpg" alt="project class">  </p>
-<p>authorize这个函数里做了一下权限的判断，rules这个函数就是根据自己的业务需求来制定自己想要的判定规则。前提是这个类必须继承FormRequest这个类，这个类是Dingo的一个用来做表单数据判断的类，里面有两个函数failedValidation和failedAuthorization，从函数名可以看出一个是用来校验错误后返回错误的信息，另一个则用来判断是否有授权，FormRequest还有个父类，这个父类实现了ValidatesWhenResolved这个接口，为我们提供了一下对数据判断的方法。</p>
-<p>讲了了这么多最重要的还是要有数据，Transformers这个文件夹主要功能就是对数据进行返回，也就是产出者。还是照惯例给出一张图：  </p>
-<p><img src="http://ww2.sinaimg.cn/large/005yEbTbgw1f8kt9cwom6j30hg0ekdj7.jpg" alt="project class">  </p>
-<p>核心的函数transform中可以看出，我没有做太多的东西，只是根据数据库的字段全部填写上去(根据自己的业务逻辑)，这个类必须得继承TransformerAbstract这个抽象类，打开这个抽象类就会发现这么一段话  </p>
-<p><img src="http://ww3.sinaimg.cn/large/005yEbTbgw1f8lygqowdvj30kd05pq3y.jpg" alt="project class">  </p>
-<p>大概的意思就是所有的数据转化的类都必须继承TransformerAbstract这个抽象类，这是为了能使用collection()和item()这两个方法，顾名思义前者是返回一个集合，后者则是返回一条记录。继承这个抽象类，必须实现transform()方法，用来返回你所需要的数据。</p>
+        <h2 id="申请并安装证书">申请并安装证书</h2><p>在折腾自己的项目的时候，恰巧有个吃灰的域名和服务器，那就搞点东西-。-~。  </p>
 <blockquote>
-<p>至于为什么要用到transform(）这个方法，我在TransformerAbstract这个抽象类中并未找到这个抽象的方法。(待解决)  </p>
+<p>acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书。  </p>
 </blockquote>
-<hr>
-<h2 id="鉴权">鉴权</h2><h3 id="1-基本概念">1.基本概念</h3><p><a href="https://en.wikipedia.org/wiki/JSON_Web_Token" target="_blank" rel="external">JWT简介</a><br>JWT-workflow 一图胜千言:<br><img src="http://ww3.sinaimg.cn/large/005yEbTbgw1f8n44jfv83j31120ksq4y.jpg" alt="">  </p>
-<h3 id="2-配置">2.配置</h3><p>说到后台，最主要还是鉴权，后台必须规定调用者应该登录后才能有权限去对服务器的资源进行请求，否则不予许其请求，JWT(json web token是一种网络的令牌)Dingo里面已经封装好了。虽然dingo里面已经包含了jwt,但是本着折腾的心我还是使用<a href="https://github.com/tymondesigns/jwt-auth/wiki/Installation" target="_blank" rel="external">tymondesigns的jwt-auth开源库</a>,跟着文档配置完就OK了，配置成功后config文件夹会有个jwt.php的配置文件，可以根据自己的业务需求来制定token的生命时间，默认是一小时内失效。refresh_token的时间则是是两周。</p>
-<h3 id="3-设计思路">3.设计思路</h3><p>接口设计用户登录之后分配一个accessToken和一个refreshToken，accessToken用于发起用户请求，refreshToken用于更新accessToken。accessToken会设置有效期，可以设为24小时。而用户退出登录之后，accessToken和refreshToken都将作废。重新登录之后会分配新的accessToken和refreshToken。用户凭借着这个accessToken来向服务器请求资源。  </p>
-<h3 id="4-一些安全(未做)">4.一些安全(未做)</h3><p>现在大多数的网站都采用<a href="https://en.wikipedia.org/wiki/HTTPS" target="_blank" rel="external">HTTPS协议</a>,那就必须把HTTP协议升级到HTTP/2，<a href="http://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html" target="_blank" rel="external">阮一峰大大</a>，还有一些对安全性要求较高的数据，并未有做处理，mark<a href="http://keeganlee.me/post/practice/20160812" target="_blank" rel="external">API安全设计</a>  </p>
-<hr>
-<h2 id="总结">总结</h2><p>基本上就可以做一些简单的接口开发.</p>
-<hr>
-<h2 id="参考">参考</h2><ul>
-<li><a href="https://www.sitepoint.com/how-to-build-an-api-only-jwt-powered-laravel-app/" target="_blank" rel="external">blog</a>  </li>
-<li><a href="https://www.alwayscoder.com/using-laravel-and-dingo-build-your-restful-api/" target="_blank" rel="external">alwayscoder-blog</a>  </li>
-<li><a href="http://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html" target="_blank" rel="external">https</a>  </li>
-<li><a href="https://github.com/layer7be/vue-starter-laravel-api" target="_blank" rel="external">laravel+dingo</a>  </li>
-</ul>
+<p>详细步骤可以到<a href="https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E" target="_blank" rel="external">acme.sh</a>中查看详细操作步骤，照着文档很快就能申请好证书，并安装好证书。  </p>
+<h2 id="配置http">配置http</h2><p>在nginx.conf的文件中能看到<code>include/etc/nginx/conf.d/*.conf</code>,<code>include /etc/nginx/sites-enabled/*</code>,解析域名的配置文件是在sites-enabled目录下，在apache中也可以指向读取配置文件的位置，<code>Include conf/extra/httpd-vhosts.conf</code> 在编辑<code>/extra/httpd-vhosts.conf</code>添加<code>conf/vhosts/*.conf</code>指向vhosts下的所有的<code>.conf</code>文件。nginx在<code>sites-enabled</code>下有个default.conf的模板，apache在<code>vhosts</code>下也有一个这样的文件，照着配置基本就能完成。现在就可以通过域名来访问你的服务器。  </p>
+<h2 id="配置https">配置https</h2><p>apache配置https和nginx配置https区别，在nginx下可以直接在当前的配置文件中添加一个新的server用来管理443端口，配置好证书的访问路径如下：<br>nginx下配置:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">	listen 443 ssl;</span><br><span class="line">    server_name 域名;</span><br><span class="line">    ssl_certificate 证书位置;</span><br><span class="line">    ssl_certificate_key  证书秘钥;</span><br><span class="line">    root 项目访问路径;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/g.access.log;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">		...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line">基本的配置好然后修改`.conf`文件，在80端的那个server中添加中定向代码`return 301 https://$server_name$request_uri;`，重启一下nginx服务器，这样基本就能ok。</span><br><span class="line"></span><br><span class="line">编辑`conf/extra/httpd-ssl.conf`你能发现这里又有一个`&lt;VirtualHost _default_:443&gt;`的标签,这里就是配置https的地方，apache配置https它也给出了默认的配置，照着配置就行了。  </span><br><span class="line">apache下的配置:  </span><br><span class="line">```python</span><br><span class="line">	&lt;VirtualHost _default_:443&gt;</span><br><span class="line">	DocumentRoot 项目访问路径</span><br><span class="line">	ServerName 域名:443</span><br><span class="line">	ErrorLog 错误日志存放路径</span><br><span class="line">	TransferLog 访问日志存放路径</span><br><span class="line">	SSLCertificateFile 证书存放路径</span><br><span class="line">	SSLCertificateKeyFile 证书密钥存放路径</span><br><span class="line"></span><br><span class="line">	&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p>同样修改<code>.conf</code>文件，在apache中使用https需要打开Rewrite，添加<code>RewriteEngine On</code> <code>RewriteCond %{HTTPS} !on</code> <code>RewriteRule (.*) https://%{HTTP_HOST}%{http://wx.tpmission.com/}$1</code> 然后重启一下apache服务器，输入域名，就能看见小绿锁了。  </p>
+<h2 id="总结">总结</h2><p>有时候能找的一些好用的脚本，真的能高效的提高自己的工作效率。配置还是挺简单的，还有一些更加高级的用法，还需要在以后的日子里面慢慢的学习和使用，nginx的访问速度真没话说(<em>^__^</em>) 嘻嘻……  </p>
+<blockquote>
+<p>文中有什么错误的地方，请指出谢谢。</p>
+</blockquote>
 
       
     </div>
@@ -357,22 +351,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/证书/" rel="tag">#证书</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/24/SeasLog的基本使用/" rel="next" title="SeasLog的基本使用">
-                <i class="fa fa-chevron-left"></i> SeasLog的基本使用
+              <a href="/2017/06/24/CSS五种方式实现Footer置底-转-1/" rel="next" title="CSS五种方式实现Footer置底(转)">
+                <i class="fa fa-chevron-left"></i> CSS五种方式实现Footer置底(转)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/11/后台开发的那些事/" rel="prev" title="后台开发的那些事">
-                后台开发的那些事 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -398,8 +394,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/10/浅用Laravel-Dingo构建restful-Api/"
-           data-title="使用Laravel+Dingo构建restful-Api" data-url="http://walk-code.github.io/2016/10/10/浅用Laravel-Dingo构建restful-Api/">
+      <div class="ds-thread" data-thread-key="2017/07/14/使用acme-sh申请letsencrypt证书/"
+           data-title="使用acme.sh申请letsencrypt证书，配置nginx的一次经历" data-url="http://walk-code.github.io/2017/07/14/使用acme-sh申请letsencrypt证书/">
       </div>
     
   </div>
@@ -492,7 +488,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鉴权"><span class="nav-number">3.</span> <span class="nav-text">鉴权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">1.基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置"><span class="nav-number">3.2.</span> <span class="nav-text">2.配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-设计思路"><span class="nav-number">3.3.</span> <span class="nav-text">3.设计思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-一些安全(未做)"><span class="nav-number">3.4.</span> <span class="nav-text">4.一些安全(未做)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#申请并安装证书"><span class="nav-number">1.</span> <span class="nav-text">申请并安装证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置http"><span class="nav-number">2.</span> <span class="nav-text">配置http</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置https"><span class="nav-number">3.</span> <span class="nav-text">配置https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
