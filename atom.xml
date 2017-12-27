@@ -4,7 +4,7 @@
   <subtitle><![CDATA[一份耕耘一份收获]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://walk-code.github.io/"/>
-  <updated>2017-12-27T15:19:04.813Z</updated>
+  <updated>2017-12-27T15:25:05.321Z</updated>
   <id>http://walk-code.github.io/</id>
   
   <author>
@@ -19,10 +19,10 @@
     <link href="http://walk-code.github.io/2017/12/24/%EF%BC%88%E8%BD%AC%EF%BC%89PHP%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%8A%80%E6%9C%AF%E6%88%90%E9%95%BF%E8%A7%84%E5%88%92/"/>
     <id>http://walk-code.github.io/2017/12/24/（转）PHP程序员的技术成长规划/</id>
     <published>2017-12-24T10:04:48.000Z</published>
-    <updated>2017-12-27T15:19:04.813Z</updated>
+    <updated>2017-12-27T15:25:05.321Z</updated>
     <content type="html"><![CDATA[<p><img src="https://i.loli.net/2017/12/24/5a3f7d64c6c6e.jpg" alt="image">  </p>
 <h2 id="前言">前言</h2><p> 按照了解的很多PHP/LNMP程序员的发展轨迹，结合个人经验体会，抽象出很多程序员对未来的迷茫，特别对技术学习的盲目和慌乱，简单梳理了这个每个阶段PHP程序员的技术要求，来帮助很多PHP程序员做<br>对照设定学习成长目标。  </p>
-<p>本文安装不去主流技术做了一个基本的梳理，整个是假设PHP程序员不是基础非常扎实的情况进行的设定，并且所有设定都非常具体明确清晰，可能会让人觉得不适，请理解仅代表一家之言。（未来技术变化不在讨论范围）  </p>
+<p>本文安装不去主流技术做了一个基本的梳理，整个是假设PHP程序员不是基础非常扎实的情况进行的设定，并且所有设定都非常具体明确清晰，可能会让人觉得不适，请理解仅代表一家之言。（未来技术变化不在讨论范围）<br><a id="more"></a></p>
 <h2 id="第一阶段：基础阶段（基础PHP程序员）"><strong>第一阶段：基础阶段（基础PHP程序员）</strong></h2><p><strong>重点：</strong> 把LNNM搞熟练（核心是安装配置借本操作）<br><strong>目标：</strong> 能够完成基本的LNMP系统安装，简单配置维护；能够做基本的简单系统的PHP开发；能够在PHP中型系统中支持某个PHP功能模块的开发。<br>时间： 完成本阶段的时间因人而异，有的成长快半年一年就过了，成长慢的两三年也有。  </p>
 <p><strong>1.Linux</strong><br>基本命令、操作、启动、基本服务配置（包括npm安装文件，各种服务配置等）；会写简单的shell脚本和awk/sed脚本命令等。  </p>
 <p><strong>2.Nginx</strong><br>做到能够安装配置nginx+php，知道基本的nginx核心配置选项，知道server/fastcgi_pass/access_log等基础配置，目标是能够让nginx+php_fpm顺利工作。  </p>
@@ -42,7 +42,9 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p><img src="https://i.loli.net/2017/12/24/5a3f7d64c6c6e.jpg" alt="image">  </p>
-<h2 id="前言">前言</h2><p> 按照了解的很多PHP/LNMP程序员的发展轨迹，结合个人经验体会，抽象出]]>
+<h2 id="前言">前言</h2><p> 按照了解的很多PHP/LNMP程序员的发展轨迹，结合个人经验体会，抽象出很多程序员对未来的迷茫，特别对技术学习的盲目和慌乱，简单梳理了这个每个阶段PHP程序员的技术要求，来帮助很多PHP程序员做<br>对照设定学习成长目标。  </p>
+<p>本文安装不去主流技术做了一个基本的梳理，整个是假设PHP程序员不是基础非常扎实的情况进行的设定，并且所有设定都非常具体明确清晰，可能会让人觉得不适，请理解仅代表一家之言。（未来技术变化不在讨论范围）<br>]]>
+    
     </summary>
     
       <category term="转载" scheme="http://walk-code.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
